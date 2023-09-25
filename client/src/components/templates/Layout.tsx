@@ -6,7 +6,7 @@ export default function Layout() {
   return (
     <main className="flex max-w-[1000px] m-auto flex-col sm:flex-row">
       <SideNav />
-      <div className="p-5">
+      <div className="p-5 flex-1">
         <Outlet />
       </div>
       <BottomNav />

@@ -41,7 +41,7 @@ export default function BottomNav() {
   ];
 
   return (
-    <nav className="sm:hidden flex fixed right-0 left-0 bottom-0 border-t">
+    <nav className="sm:hidden flex fixed right-0 left-0 bottom-0 border-t bg-white">
       {listNavigate.map(({ to, title, icon }, index) => (
         <NavLink to={to} title={title} icon={icon} key={index} />
       ))}

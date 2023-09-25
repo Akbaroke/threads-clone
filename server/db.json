@@ -1,0 +1,112 @@
+{
+  "contentDatas": [
+    {
+      "id": "1",
+      "username": "john_doe",
+      "imageProfile": "https://picsum.photos/50?random=11",
+      "isVerified": true,
+      "content": {
+        "text": "Lorem ipsum dolor sit amet",
+        "image": "image1.jpg",
+        "hastag": ["#example", "#dummy"]
+      },
+      "isLiked": false,
+      "likeCount": 10,
+      "replies": {
+        "count": 5,
+        "imageProfile": [
+          "https://picsum.photos/50?random=12",
+          "https://picsum.photos/50?random=13"
+        ]
+      },
+      "updated_at": 1632603600,
+      "created_at": 1632517200
+    },
+    {
+      "id": "2",
+      "username": "jane_doe",
+      "imageProfile": "https://picsum.photos/50?random=21",
+      "isVerified": false,
+      "content": {
+        "text": "Sed ut perspiciatis unde omnis iste natus error",
+        "video": "video1.mp4"
+      },
+      "isLiked": true,
+      "likeCount": 20,
+      "replies": {
+        "count": 8,
+        "imageProfile": [
+          "https://picsum.photos/50?random=22",
+          "https://picsum.photos/50?random=23"
+        ]
+      },
+      "updated_at": 1632603600,
+      "created_at": 1632590000
+    },
+    {
+      "id": "3",
+      "username": "mary_smith",
+      "imageProfile": "https://picsum.photos/50?random=31",
+      "isVerified": true,
+      "content": {
+        "text": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+        "image": "image2.jpg",
+        "hastag": ["#example", "#dummy", "#Lorem"]
+      },
+      "isLiked": true,
+      "likeCount": 15,
+      "replies": {
+        "count": 3,
+        "imageProfile": [
+          "https://picsum.photos/50?random=32",
+          "https://picsum.photos/50?random=33"
+        ]
+      },
+      "updated_at": 1632603600,
+      "created_at": 1632566400
+    },
+    {
+      "id": "4",
+      "username": "jacob_jones",
+      "imageProfile": "https://picsum.photos/50?random=41",
+      "isVerified": false,
+      "content": {
+        "text": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+        "video": "video2.mp4"
+      },
+      "isLiked": false,
+      "likeCount": 8,
+      "replies": {
+        "count": 6,
+        "imageProfile": [
+          "https://picsum.photos/50?random=42",
+          "https://picsum.photos/50?random=43"
+        ]
+      },
+      "updated_at": 1632603600,
+      "created_at": 1632539200
+    },
+    {
+      "id": "5",
+      "username": "emily_davis",
+      "imageProfile": "https://picsum.photos/50?random=51",
+      "isVerified": true,
+      "content": {
+        "text": "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur",
+        "image": "image3.jpg",
+        "hastag": ["#example", "#Lorem"]
+      },
+      "isLiked": true,
+      "likeCount": 12,
+      "replies": {
+        "count": 4,
+        "imageProfile": [
+          "https://picsum.photos/50?random=52",
+          "https://picsum.photos/50?random=53"
+        ]
+      },
+      "updated_at": 1632603600,
+      "created_at": 1632520800
+    }
+  ]
+}
