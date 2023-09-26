@@ -51,7 +51,7 @@ export default function SideNav() {
   ];
 
   return (
-    <nav className="hidden sm:flex flex-col justify-between min-h-screen p-5 border-r w-[300px]">
+    <nav className="hidden sm:flex flex-col justify-between min-h-screen p-5 border-r w-[300px] sticky top-0 max-h-screen">
       <div className="flex flex-col gap-5">
         <div
           className="p-4 hover:bg-gray-100 w-max rounded-full cursor-pointer m-auto"

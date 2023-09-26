@@ -7,3 +7,14 @@
 * {
   font-family: 'Plus Jakarta Sans', sans-serif;
 }
+
+.LazyLoad {
+  opacity: 0;
+  filter: blur(20px);
+  transition: all 1s ease-in-out;
+}
+
+.is-visible {
+  filter: none;
+  opacity: 1;
+}
