@@ -15,14 +15,14 @@ export default function NavLink({ to, title, icon }: NavLinkProps) {
     <Link
       to={to}
       className={cn(
-        'flex items-center justify-center sm:justify-start gap-2 [&>svg]:text-[20px] p-3 rounded-xl sm:hover:bg-gray-100 text-gray-400 w-full',
+        'flex items-center justify-center sm:justify-start gap-2 [&>svg]:text-[24px] sm:[&>svg]:text-[22px] sm:p-3 p-5 rounded-xl sm:hover:bg-gray-100 text-gray-400 w-max lg:w-full',
         {
           'text-black sm:bg-gray-100': pathname === to,
         }
       )}>
       {icon}
       <p
-        className={cn('text-[16px] font-normal hidden sm:inline', [
+        className={cn('text-[16px] font-normal hidden lg:inline', [
           {
             'font-medium': pathname === to,
           },

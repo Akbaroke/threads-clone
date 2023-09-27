@@ -15,6 +15,7 @@ export interface ContentDatas {
     hastags?: string[];
   };
   isLiked: boolean;
+  isRepliesed: boolean;
   likeCount: number;
   replies: {
     count: number;

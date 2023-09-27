@@ -5,7 +5,7 @@
       "username": "john_doe",
       "imageProfile": "https://picsum.photos/100?random=11",
       "isVerified": false,
-      "isFollowing": true,
+      "isFollowing": false,
       "content": {
         "text": "Lorem ipsum dolor sit amet",
         "images": [
@@ -20,7 +20,8 @@
         ]
       },
       "isLiked": true,
-      "likeCount": 11,
+      "isRepliesed": false,
+      "likeCount": 10,
       "replies": {
         "count": 5,
         "imageProfile": [
@@ -28,8 +29,8 @@
           "https://picsum.photos/100?random=13"
         ]
       },
-      "updated_at": 1632603600,
-      "created_at": 1632517200
+      "updated_at": 1695805595,
+      "created_at": 1695805595
     },
     {
       "id": "2",
@@ -43,17 +44,18 @@
           "https://picsum.photos/500/700?random=20"
         ]
       },
-      "isLiked": true,
-      "likeCount": 21,
+      "isLiked": false,
+      "isRepliesed": true,
+      "likeCount": 20,
       "replies": {
-        "count": 8,
+        "count": 9,
         "imageProfile": [
           "https://picsum.photos/100?random=22",
           "https://picsum.photos/100?random=23"
         ]
       },
-      "updated_at": 1632603600,
-      "created_at": 1632590000
+      "updated_at": 1695805595,
+      "created_at": 1695805595
     },
     {
       "id": "3",
@@ -73,6 +75,7 @@
         ]
       },
       "isLiked": false,
+      "isRepliesed": false,
       "likeCount": 15,
       "replies": {
         "count": 3,
@@ -81,8 +84,8 @@
           "https://picsum.photos/100?random=33"
         ]
       },
-      "updated_at": 1632603600,
-      "created_at": 1632566400
+      "updated_at": 1695805595,
+      "created_at": 1695805595
     },
     {
       "id": "4",
@@ -98,8 +101,9 @@
           "https://picsum.photos/500/700?random=38"
         ]
       },
-      "isLiked": true,
-      "likeCount": 8,
+      "isLiked": false,
+      "isRepliesed": false,
+      "likeCount": 7,
       "replies": {
         "count": 6,
         "imageProfile": [
@@ -107,8 +111,8 @@
           "https://picsum.photos/100?random=43"
         ]
       },
-      "updated_at": 1632603600,
-      "created_at": 1632539200
+      "updated_at": 1695805595,
+      "created_at": 1695805595
     },
     {
       "id": "5",
@@ -126,8 +130,9 @@
           "#Lorem"
         ]
       },
-      "isLiked": true,
-      "likeCount": 12,
+      "isLiked": false,
+      "isRepliesed": false,
+      "likeCount": 11,
       "replies": {
         "count": 4,
         "imageProfile": [
@@ -135,8 +140,157 @@
           "https://picsum.photos/100?random=53"
         ]
       },
-      "updated_at": 1632603600,
-      "created_at": 1632520800
+      "updated_at": 1695805595,
+      "created_at": 1695805595
+    },
+    {
+      "id": "6",
+      "username": "michael_smith",
+      "imageProfile": "https://picsum.photos/100?random=61",
+      "isVerified": true,
+      "isFollowing": false,
+      "content": {
+        "text": "Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae",
+        "images": [
+          "https://picsum.photos/500/700?random=60"
+        ],
+        "hastags": [
+          "#example",
+          "#Lorem",
+          "#dolor"
+        ]
+      },
+      "isLiked": false,
+      "isRepliesed": false,
+      "likeCount": 18,
+      "replies": {
+        "count": 7,
+        "imageProfile": [
+          "https://picsum.photos/100?random=62",
+          "https://picsum.photos/100?random=63"
+        ]
+      },
+      "updated_at": 1695805595,
+      "created_at": 1695805595
+    },
+    {
+      "id": "7",
+      "username": "olivia_wilson",
+      "imageProfile": "https://picsum.photos/100?random=71",
+      "isVerified": false,
+      "isFollowing": false,
+      "content": {
+        "text": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident",
+        "images": [
+          "https://picsum.photos/500/700?random=70"
+        ],
+        "hastags": [
+          "#Lorem",
+          "#ipsum",
+          "#dolor"
+        ]
+      },
+      "isLiked": false,
+      "isRepliesed": true,
+      "likeCount": 10,
+      "replies": {
+        "count": 4,
+        "imageProfile": [
+          "https://picsum.photos/100?random=72",
+          "https://picsum.photos/100?random=73"
+        ]
+      },
+      "updated_at": 1695805595,
+      "created_at": 1695805595
+    },
+    {
+      "id": "8",
+      "username": "william_johnson",
+      "imageProfile": "https://picsum.photos/100?random=81",
+      "isVerified": false,
+      "isFollowing": false,
+      "content": {
+        "text": "Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus",
+        "images": [
+          "https://picsum.photos/500/700?random=80"
+        ],
+        "hastags": [
+          "#Lorem",
+          "#ipsum",
+          "#dolor"
+        ]
+      },
+      "isLiked": true,
+      "isRepliesed": false,
+      "likeCount": 14,
+      "replies": {
+        "count": 6,
+        "imageProfile": [
+          "https://picsum.photos/100?random=82",
+          "https://picsum.photos/100?random=83"
+        ]
+      },
+      "updated_at": 1695805595,
+      "created_at": 1695805595
+    },
+    {
+      "id": "9",
+      "username": "david_brown",
+      "imageProfile": "https://picsum.photos/100?random=91",
+      "isVerified": false,
+      "isFollowing": false,
+      "content": {
+        "text": "Et harum quidem rerum facilis est et expedita distinctio",
+        "images": [
+          "https://picsum.photos/500/700?random=90"
+        ],
+        "hastags": [
+          "#Lorem",
+          "#ipsum"
+        ]
+      },
+      "isLiked": true,
+      "isRepliesed": false,
+      "likeCount": 18,
+      "replies": {
+        "count": 4,
+        "imageProfile": [
+          "https://picsum.photos/100?random=92",
+          "https://picsum.photos/100?random=93"
+        ]
+      },
+      "updated_at": 1695805595,
+      "created_at": 1695805595
+    },
+    {
+      "id": "10",
+      "username": "oliver_taylor",
+      "imageProfile": "https://picsum.photos/100?random=101",
+      "isVerified": true,
+      "isFollowing": false,
+      "content": {
+        "text": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet",
+        "images": [
+          "https://picsum.photos/500/700?random=100"
+        ],
+        "hastags": [
+          "#Lorem",
+          "#ipsum",
+          "#dolor"
+        ]
+      },
+      "isLiked": false,
+      "isRepliesed": false,
+      "likeCount": 8,
+      "replies": {
+        "count": 2,
+        "imageProfile": [
+          "https://picsum.photos/100?random=102",
+          "https://picsum.photos/100?random=103"
+        ]
+      },
+      "updated_at": 1695805595,
+      "created_at": 1695805595
     }
   ]
 }

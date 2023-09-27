@@ -17,12 +17,15 @@ export default function UserInfo({ users }: Props) {
           alt=""
           className="w-12 rounded-full bg-white"
         />
-        <div>
+        <div className="hidden lg:block">
           <h1 className="text-[14px] font-semibold text-black">{users.name}</h1>
           <p className="text-[12px] text-gray-400">@{users.username}</p>
         </div>
       </div>
-      <BiDotsHorizontalRounded size={22} className="text-gray-400" />
+      <BiDotsHorizontalRounded
+        size={22}
+        className="text-gray-400 hidden lg:block"
+      />
     </div>
   );
 }

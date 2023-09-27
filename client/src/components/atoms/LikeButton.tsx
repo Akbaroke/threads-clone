@@ -1,22 +1,14 @@
-import { useState } from 'react';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 
 type Props = {
-  onClick: () => void;
-  isLiked: boolean;
+  isLike: boolean;
+  onLike: () => void;
 };
 
-export default function LikeButton({ onClick, isLiked }: Props) {
-  const [isLike, setIsLike] = useState(isLiked);
-
-  const togleLike = () => {
-    setIsLike(!isLike);
-    onClick();
-  };
-
+export default function LikeButton({ isLike, onLike }: Props) {
   return (
     <div
-      onClick={togleLike}
+      onClick={onLike}
       className="cursor-pointer transition-all duration-300 active:scale-150 hover:[&>svg]:fill-red-600">
       {isLike ? (
         <AiFillHeart size={23.5} className="fill-red-600" />

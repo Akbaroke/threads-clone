@@ -51,14 +51,14 @@ export default function SideNav() {
   ];
 
   return (
-    <nav className="hidden sm:flex flex-col justify-between min-h-screen p-5 border-r w-[300px] sticky top-0 max-h-screen">
+    <nav className="hidden sm:flex flex-col justify-between h-screen p-5 border-r max-w-[300px] lg:max-w-none lg:min-w-[300px] sticky top-0">
       <div className="flex flex-col gap-5">
         <div
           className="p-4 hover:bg-gray-100 w-max rounded-full cursor-pointer m-auto"
           onClick={() => navigate('/')}>
           <img src={LOGO} alt="logo" className="w-[30px]" />
         </div>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 items-center lg:items-start">
           {listNavigate.map(({ to, title, icon }, index) => (
             <NavLink to={to} title={title} icon={icon} key={index} />
           ))}
