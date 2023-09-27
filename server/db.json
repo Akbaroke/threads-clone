@@ -4,7 +4,7 @@
       "id": "1",
       "username": "john_doe",
       "imageProfile": "https://picsum.photos/100?random=11",
-      "isVerified": true,
+      "isVerified": false,
       "isFollowing": true,
       "content": {
         "text": "Lorem ipsum dolor sit amet",
@@ -14,10 +14,13 @@
           "https://picsum.photos/500/700?random=8",
           "https://picsum.photos/500/700?random=7"
         ],
-        "hastags": ["#example", "#dummy"]
+        "hastags": [
+          "#example",
+          "#dummy"
+        ]
       },
       "isLiked": true,
-      "likeCount": 10,
+      "likeCount": 11,
       "replies": {
         "count": 5,
         "imageProfile": [
@@ -32,14 +35,16 @@
       "id": "2",
       "username": "jane_doe",
       "imageProfile": "https://picsum.photos/100?random=21",
-      "isVerified": false,
+      "isVerified": true,
       "isFollowing": true,
       "content": {
         "text": "Sed ut perspiciatis unde omnis iste natus error",
-        "images": ["https://picsum.photos/500/700?random=20"]
+        "images": [
+          "https://picsum.photos/500/700?random=20"
+        ]
       },
       "isLiked": true,
-      "likeCount": 20,
+      "likeCount": 21,
       "replies": {
         "count": 8,
         "imageProfile": [
@@ -54,12 +59,18 @@
       "id": "3",
       "username": "mary_smith",
       "imageProfile": "https://picsum.photos/100?random=31",
-      "isVerified": true,
+      "isVerified": false,
       "isFollowing": true,
       "content": {
         "text": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
-        "images": ["https://picsum.photos/500/700?random=30"],
-        "hastags": ["#example", "#dummy", "#Lorem"]
+        "images": [
+          "https://picsum.photos/500/700?random=30"
+        ],
+        "hastags": [
+          "#example",
+          "#dummy",
+          "#Lorem"
+        ]
       },
       "isLiked": false,
       "likeCount": 15,
@@ -87,7 +98,7 @@
           "https://picsum.photos/500/700?random=38"
         ]
       },
-      "isLiked": false,
+      "isLiked": true,
       "likeCount": 8,
       "replies": {
         "count": 6,
@@ -107,8 +118,13 @@
       "isFollowing": true,
       "content": {
         "text": "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur",
-        "images": ["https://picsum.photos/500/700?random=50"],
-        "hastags": ["#example", "#Lorem"]
+        "images": [
+          "https://picsum.photos/500/700?random=50"
+        ],
+        "hastags": [
+          "#example",
+          "#Lorem"
+        ]
       },
       "isLiked": true,
       "likeCount": 12,
