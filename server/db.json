@@ -1,11 +1,75 @@
 {
+  "userProfile": {
+    "id": "1",
+    "name": "Muhammad Akbar",
+    "username": "akbaroke",
+    "imageProfile": "https://avatars.githubusercontent.com/u/94231436?v=4",
+    "isVerified": true,
+    "bio": "Dont give up on your life",
+    "linkWebsite": "https://akbaroke.my.id",
+    "followersCount": 20
+  },
+  "userThreds": [
+    {
+      "id": "1",
+      "username": "akbaroke",
+      "imageProfile": "https://avatars.githubusercontent.com/u/94231436?v=4",
+      "isVerified": true,
+      "content": {
+        "text": "Lorem ipsum dolor sit amet",
+        "images": [
+          "https://picsum.photos/500/700?random=1",
+          "https://picsum.photos/500/700?random=2",
+          "https://picsum.photos/500/700?random=3",
+          "https://picsum.photos/500/700?random=4"
+        ],
+        "hastags": [
+          "#example",
+          "#dummy"
+        ]
+      },
+      "isLiked": true,
+      "isReposted": false,
+      "likeCount": 10,
+      "replies": {
+        "count": 0,
+        "imageProfile": []
+      },
+      "updated_at": 1695805595,
+      "created_at": 1695805595
+    },
+    {
+      "id": "2",
+      "username": "akbaroke",
+      "imageProfile": "https://avatars.githubusercontent.com/u/94231436?v=4",
+      "isVerified": true,
+      "content": {
+        "text": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
+        "images": [
+          "https://picsum.photos/500/700?random=6"
+        ],
+        "hastags": [
+          "#fyp"
+        ]
+      },
+      "isLiked": true,
+      "isReposted": false,
+      "likeCount": 3,
+      "replies": {
+        "count": 0,
+        "imageProfile": []
+      },
+      "updated_at": 1695805595,
+      "created_at": 1695805595
+    }
+  ],
   "contentDatas": [
     {
       "id": "1",
       "username": "john_doe",
       "imageProfile": "https://picsum.photos/100?random=11",
       "isVerified": false,
-      "isFollowing": false,
+      "isFollowing": true,
       "content": {
         "text": "Lorem ipsum dolor sit amet",
         "images": [
@@ -20,14 +84,11 @@
         ]
       },
       "isLiked": true,
-      "isRepliesed": false,
+      "isReposted": true,
       "likeCount": 10,
       "replies": {
-        "count": 5,
-        "imageProfile": [
-          "https://picsum.photos/100?random=12",
-          "https://picsum.photos/100?random=13"
-        ]
+        "count": 1,
+        "imageProfile": []
       },
       "updated_at": 1695805595,
       "created_at": 1695805595
@@ -44,15 +105,12 @@
           "https://picsum.photos/500/700?random=20"
         ]
       },
-      "isLiked": false,
-      "isRepliesed": true,
-      "likeCount": 20,
+      "isLiked": true,
+      "isReposted": true,
+      "likeCount": 21,
       "replies": {
-        "count": 9,
-        "imageProfile": [
-          "https://picsum.photos/100?random=22",
-          "https://picsum.photos/100?random=23"
-        ]
+        "count": 1,
+        "imageProfile": []
       },
       "updated_at": 1695805595,
       "created_at": 1695805595
@@ -75,7 +133,7 @@
         ]
       },
       "isLiked": false,
-      "isRepliesed": false,
+      "isReposted": false,
       "likeCount": 15,
       "replies": {
         "count": 3,
@@ -102,7 +160,7 @@
         ]
       },
       "isLiked": false,
-      "isRepliesed": false,
+      "isReposted": false,
       "likeCount": 7,
       "replies": {
         "count": 6,
@@ -131,7 +189,7 @@
         ]
       },
       "isLiked": false,
-      "isRepliesed": false,
+      "isReposted": false,
       "likeCount": 11,
       "replies": {
         "count": 4,
@@ -161,7 +219,7 @@
         ]
       },
       "isLiked": false,
-      "isRepliesed": false,
+      "isReposted": false,
       "likeCount": 18,
       "replies": {
         "count": 7,
@@ -191,7 +249,7 @@
         ]
       },
       "isLiked": false,
-      "isRepliesed": true,
+      "isReposted": true,
       "likeCount": 10,
       "replies": {
         "count": 4,
@@ -221,7 +279,7 @@
         ]
       },
       "isLiked": true,
-      "isRepliesed": false,
+      "isReposted": false,
       "likeCount": 14,
       "replies": {
         "count": 6,
@@ -238,7 +296,7 @@
       "username": "david_brown",
       "imageProfile": "https://picsum.photos/100?random=91",
       "isVerified": false,
-      "isFollowing": false,
+      "isFollowing": true,
       "content": {
         "text": "Et harum quidem rerum facilis est et expedita distinctio",
         "images": [
@@ -250,10 +308,10 @@
         ]
       },
       "isLiked": true,
-      "isRepliesed": false,
+      "isReposted": true,
       "likeCount": 18,
       "replies": {
-        "count": 4,
+        "count": 5,
         "imageProfile": [
           "https://picsum.photos/100?random=92",
           "https://picsum.photos/100?random=93"
@@ -280,7 +338,7 @@
         ]
       },
       "isLiked": false,
-      "isRepliesed": false,
+      "isReposted": false,
       "likeCount": 8,
       "replies": {
         "count": 2,

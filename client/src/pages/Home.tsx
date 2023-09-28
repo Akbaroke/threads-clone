@@ -8,7 +8,7 @@ export interface ContentDatas {
   username: string;
   imageProfile: string;
   isVerified: boolean;
-  isFollowing: boolean;
+  isFollowing?: boolean;
   content: {
     text: string;
     images?: string[];
@@ -16,7 +16,7 @@ export interface ContentDatas {
     hastags?: string[];
   };
   isLiked: boolean;
-  isRepliesed: boolean;
+  isReposted: boolean;
   likeCount: number;
   replies: {
     count: number;

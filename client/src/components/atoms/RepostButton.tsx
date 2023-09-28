@@ -1,16 +1,16 @@
 import { TbRepeat } from 'react-icons/tb';
 
 type Props = {
-  isReplies: boolean;
-  onReplies: () => void;
+  isRepost: boolean;
+  onRepost: () => void;
 };
 
-export default function RepliesButton({ isReplies, onReplies }: Props) {
+export default function RepostButton({ isRepost, onRepost }: Props) {
   return (
     <div
-      onClick={onReplies}
+      onClick={onRepost}
       className="cursor-pointer transition-all duration-300 active:scale-150">
-      {isReplies ? (
+      {isRepost ? (
         <svg
           width="20"
           height="18"

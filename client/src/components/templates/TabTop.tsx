@@ -21,10 +21,16 @@ export default function TabTop({ PageForYou, PageFollowing }: Props) {
       </div>
       <Tabs defaultValue="fy" color="dark" onTabChange={setActiveTab}>
         <Tabs.List grow className="sticky top-0 bg-white z-30">
-          <Tabs.Tab value="fy" p="md">
+          <Tabs.Tab
+            value="fy"
+            p="md"
+            className={activeTab === 'fy' ? 'font-semibold' : 'text-gray-400'}>
             For you
           </Tabs.Tab>
-          <Tabs.Tab value="fl" p="md">
+          <Tabs.Tab
+            value="fl"
+            p="md"
+            className={activeTab === 'fl' ? 'font-semibold' : 'text-gray-400'}>
             Following
           </Tabs.Tab>
         </Tabs.List>

@@ -11,7 +11,7 @@ import { Image } from 'primereact/image';
 import 'primereact/resources/primereact.min.css';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';
 import LazyLoad from 'react-lazy-load';
-import RepliesButton from '../atoms/RepliesButton';
+import RepostButton from '../atoms/RepostButton';
 import TimeDisplay from '../atoms/TimeDisplay';
 import VerifedIcon from '../atoms/VerifedIcon';
 
@@ -23,35 +23,35 @@ export default function CardContent({ contentData }: Props) {
   const [isFollowing, setIsFollowing] = useState(contentData.isFollowing);
   const [isLike, setIsLike] = useState(contentData.isLiked);
   const [likeCount, setLikeCount] = useState(contentData.likeCount);
-  const [isReplies, setIsReplies] = useState(contentData.isRepliesed);
-  const [repliesCount, setRepliesCount] = useState(contentData.replies.count);
+  const [isRepost, setIsRepost] = useState(contentData.isReposted);
+  const [repostCount, setRepostCount] = useState(contentData.replies.count);
 
-  const animationRepliesCount = {
-    '--value': repliesCount,
+  const animationRepostCount = {
+    '--value': repostCount,
   } as React.CSSProperties;
 
   const animationLikeCount = {
     '--value': likeCount,
   } as React.CSSProperties;
 
-  const handleRepliesed = async () => {
-    setIsReplies(!isReplies);
-    setRepliesCount(isReplies ? repliesCount - 1 : repliesCount + 1);
+  const handleReposted= async () => {
+    setIsRepost(!isRepost);
+    setRepostCount(isRepost ? repostCount - 1 : repostCount + 1);
     try {
       const res = await axios.patch(
         `http://localhost:5000/contentDatas/${contentData.id}`,
         {
-          isRepliesed: !isReplies,
+          isReposted: !isRepost,
           replies: {
-            count: isReplies ? repliesCount - 1 : repliesCount + 1,
+            count: isRepost ? repostCount - 1 : repostCount + 1,
             imageProfile: [...contentData.replies.imageProfile],
           },
         }
       );
       console.log(res.data);
     } catch (error) {
-      setIsReplies(!isReplies);
-      setRepliesCount(isReplies ? repliesCount + 1 : repliesCount - 1);
+      setIsRepost(!isRepost);
+      setRepostCount(isRepost ? repostCount + 1 : repostCount - 1);
       console.log(error);
     }
   };
@@ -141,28 +141,32 @@ export default function CardContent({ contentData }: Props) {
         <div className="flex items-center gap-5">
           <LikeButton isLike={isLike} onLike={handleLiked} />
           <FaRegComment size={20} />
-          <RepliesButton isReplies={isReplies} onReplies={handleRepliesed} />
+          <RepostButton isRepost={isRepost} onRepost={handleReposted} />
 
           <FiSend size={20} />
         </div>
         <div className="flex items-center gap-1 text-gray-400">
-          <div className="flex items-center">
-            <span className="countdown">
-              <p style={animationRepliesCount}></p>
-            </span>
-            <p className={`relative ${repliesCount > 9 ? '' : '-left-2'}`}>
-              replies
-            </p>
-          </div>
-          {repliesCount > 0 && <p>∙</p>}
-          <div className="flex items-center pl-2">
-            <span className="countdown">
-              <p style={animationLikeCount}></p>
-            </span>
-            <p className={`relative ${likeCount > 9 ? '' : '-left-2'}`}>
-              likes
-            </p>
-          </div>
+          {repostCount > 0 && (
+            <div className="flex items-center">
+              <span className="countdown">
+                <p style={animationRepostCount}></p>
+              </span>
+              <p className={`relative ${repostCount > 9 ? '' : '-left-2'}`}>
+                replies
+              </p>
+            </div>
+          )}
+          {repostCount > 0 && <p>∙</p>}
+          {likeCount > 0 && (
+            <div className="flex items-center pl-2">
+              <span className="countdown">
+                <p style={animationLikeCount}></p>
+              </span>
+              <p className={`relative ${likeCount > 9 ? '' : '-left-2'}`}>
+                likes
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </div>
