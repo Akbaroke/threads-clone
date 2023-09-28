@@ -1,4 +1,5 @@
 import CardContent from '@/components/organisms/CardContent';
+import TabTop from '@/components/templates/TabTop';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
@@ -39,9 +40,16 @@ export default function Home() {
 
   return (
     <div>
-      {contentDatas?.map((contentData) => (
-        <CardContent key={contentData.id} contentData={contentData} />
-      ))}
+      <TabTop
+        PageForYou={contentDatas?.map((contentData) => (
+          <CardContent key={contentData.id} contentData={contentData} />
+        ))}
+        PageFollowing={contentDatas
+          ?.filter((contentData) => contentData.isFollowing === true)
+          .map((contentData) => (
+            <CardContent key={contentData.id} contentData={contentData} />
+          ))}
+      />
     </div>
   );
 }
