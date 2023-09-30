@@ -1,4 +1,18 @@
 {
+  "users": [
+    {
+      "username": "akbaroke",
+      "email": "akbar@gmail.com",
+      "password": "akbar123",
+      "id": 1
+    },
+    {
+      "username": "akbaroke",
+      "email": "akbar@gmail.com",
+      "password": "akbar123",
+      "id": 2
+    }
+  ],
   "userProfile": {
     "id": "1",
     "name": "Muhammad Akbar",

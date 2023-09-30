@@ -28,9 +28,9 @@ export default function Button({
         'w-full py-1 px-2 sm:py-2 sm:px-4 rounded-lg sm:rounded-xl text-[12px] sm:text-[14px] font-semibold',
         {
           'bg-black text-white ': variant === 'fill',
-          'bg-white text-black border border-gray-300': variant === 'outline',
-          className,
-        }
+          'bg-white text-black border border-gray-200': variant === 'outline',
+        },
+        className
       )}>
       {children}
     </button>

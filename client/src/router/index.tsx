@@ -7,10 +7,12 @@ import Activity from '@/pages/Activity';
 import Profile from '@/pages/Profile';
 import Root from '@/pages/Root';
 import EditProfile from '@/pages/EditProfile';
+import Register from '@/pages/Register';
 
 export default function root() {
   return (
     <Routes>
+      <Route path="/signup" element={<Register />} />
       <Route path="/" element={<Root />} />
       <Route path="/" element={<Layout />}>
         <Route index path="/home" element={<Home />} />
