@@ -34,7 +34,7 @@ export default function CardContent({ contentData }: Props) {
     '--value': likeCount,
   } as React.CSSProperties;
 
-  const handleReposted= async () => {
+  const handleReposted = async () => {
     setIsRepost(!isRepost);
     setRepostCount(isRepost ? repostCount - 1 : repostCount + 1);
     try {
@@ -99,7 +99,7 @@ export default function CardContent({ contentData }: Props) {
             <img
               src={contentData.imageProfile}
               alt={contentData.username}
-              className="rounded-full w-[50px] h-[50px] object-cover bg-gray-400"
+              className="rounded-full w-[50px] h-[50px] object-cover bg-gray-200"
             />
           </ModalProfilePicture>
           {!isFollowing && (
@@ -190,7 +190,7 @@ function ImageContent({ image }: { image: string }) {
         <Image
           src={image}
           alt=""
-          className="w-full overflow-hidden rounded-lg shadow-md bg-gray-400"
+          className="w-full overflow-hidden rounded-lg shadow-md bg-gray-200"
           preview
           onLoadCapture={() => setIsLoadedContent(false)}
         />

@@ -6,6 +6,7 @@ import NewThread from '@/pages/NewThread';
 import Activity from '@/pages/Activity';
 import Profile from '@/pages/Profile';
 import Root from '@/pages/Root';
+import EditProfile from '@/pages/EditProfile';
 
 export default function root() {
   return (
@@ -17,6 +18,7 @@ export default function root() {
         <Route path="/newthread" element={<NewThread />} />
         <Route path="/activity" element={<Activity />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/profile/edit" element={<EditProfile />} />
       </Route>
     </Routes>
   );

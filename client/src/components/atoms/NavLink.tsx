@@ -17,7 +17,9 @@ export default function NavLink({ to, title, icon }: NavLinkProps) {
       className={cn(
         'flex items-center justify-center sm:justify-start gap-2 [&>svg]:text-[24px] sm:[&>svg]:text-[22px] sm:p-3 p-5 rounded-xl sm:hover:bg-gray-100 text-gray-400 w-max lg:w-full',
         {
-          'text-black sm:bg-gray-100': pathname === to,
+          'text-black sm:bg-gray-100': pathname
+            .split('/')
+            .includes(to.replace('/', '')),
         }
       )}>
       {icon}
