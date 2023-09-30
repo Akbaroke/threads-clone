@@ -8,10 +8,12 @@ import Profile from '@/pages/Profile';
 import Root from '@/pages/Root';
 import EditProfile from '@/pages/EditProfile';
 import Register from '@/pages/Register';
+import Login from '@/pages/Login';
 
 export default function root() {
   return (
     <Routes>
+      <Route path="/signin" element={<Login />} />
       <Route path="/signup" element={<Register />} />
       <Route path="/" element={<Root />} />
       <Route path="/" element={<Layout />}>
