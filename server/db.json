@@ -4,13 +4,8 @@
       "username": "akbaroke",
       "email": "akbar@gmail.com",
       "password": "akbar123",
+      "role": "admin",
       "id": 1
-    },
-    {
-      "username": "akbaroke",
-      "email": "akbar@gmail.com",
-      "password": "akbar123",
-      "id": 2
     }
   ],
   "userProfile": {

@@ -14,12 +14,15 @@ import LazyLoad from 'react-lazy-load';
 import RepostButton from '../atoms/RepostButton';
 import TimeDisplay from '../atoms/TimeDisplay';
 import VerifedIcon from '../atoms/VerifedIcon';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/redux/store';
 
 type Props = {
   contentData: ContentDatas;
 };
 
 export default function CardContent({ contentData }: Props) {
+  const { user } = useSelector((state: RootState) => state.auth);
   const [isFollowing, setIsFollowing] = useState(contentData.isFollowing);
   const [isLike, setIsLike] = useState(contentData.isLiked);
   const [likeCount, setLikeCount] = useState(contentData.likeCount);
@@ -102,7 +105,7 @@ export default function CardContent({ contentData }: Props) {
               className="rounded-full w-[50px] h-[50px] object-cover bg-gray-200"
             />
           </ModalProfilePicture>
-          {!isFollowing && (
+          {!isFollowing && user?.username !== contentData.username && (
             <div
               className="absolute text-black transition-all duration-300 bg-white rounded-full cursor-pointer -bottom-1 -right-1 hover:scale-110"
               onClick={handleFollowed}>

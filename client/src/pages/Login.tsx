@@ -3,23 +3,20 @@ import Input from '@/components/atoms/Input';
 import { isEmail, useForm } from '@mantine/form';
 import { FcGoogle } from 'react-icons/fc';
 import LOGO from '@/assets/threads-logo.png';
-import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { loginUser } from '@/redux/actions/authAsync';
 
 type FormType = {
   email: string;
   password: string;
 };
 
-interface UsersResponse {
-  id: number;
-  username: string;
-  email: string;
-  password: string;
-}
-
 export default function Login() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || '/';
 
   const form = useForm<FormType>({
     validateInputOnChange: true,
@@ -35,22 +32,22 @@ export default function Login() {
     },
   });
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     try {
-      const data = await axios.get('http://localhost:5000/users');
-      const query = data.data.find(
-        (user: UsersResponse) => user.email === form.values.email
-      );
-      if (query) {
-        if (query.password === form.values.password) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      dispatch(loginUser(form.values)).then((user) => {
+        console.log('Login :', user.meta.requestStatus);
+        if (user.meta.requestStatus === 'fulfilled') {
+          console.log('Login Success');
+          navigate(from, { replace: true });
           form.reset();
-          navigate('/');
+        } else {
+          console.log('Login Failed');
         }
-      } else {
-        alert('Email and Password does not match');
-      }
+      });
     } catch (error) {
-      console.log(error);
+      console.error('Login Failed', error);
     }
   };
 
