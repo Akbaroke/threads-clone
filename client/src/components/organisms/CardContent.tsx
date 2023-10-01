@@ -6,16 +6,15 @@ import { ContentDatas } from '@/pages/Home';
 import ModalProfilePicture from '../molecules/ModalProfilePicture';
 import axios from 'axios';
 import { useState } from 'react';
-import { Badge, Skeleton } from '@mantine/core';
-import { Image } from 'primereact/image';
+import { Badge, Container } from '@mantine/core';
 import 'primereact/resources/primereact.min.css';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';
-import LazyLoad from 'react-lazy-load';
 import RepostButton from '../atoms/RepostButton';
 import TimeDisplay from '../atoms/TimeDisplay';
 import VerifedIcon from '../atoms/VerifedIcon';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
+import ImageContent from '../atoms/ImageContent';
 
 type Props = {
   contentData: ContentDatas;
@@ -125,7 +124,7 @@ export default function CardContent({ contentData }: Props) {
         </div>
       </div>
       <div className="relative flex flex-col gap-5 ml-16 -top-6 z-20">
-        <p>{contentData.content.text}</p>
+        <p className="whitespace-pre-line">{contentData.content.text}</p>
         <div className="flex gap-2">
           {contentData.content.hastags?.flatMap((value, index) => (
             <Badge key={index} color="gray" size="sm">
@@ -133,12 +132,14 @@ export default function CardContent({ contentData }: Props) {
             </Badge>
           ))}
         </div>
-        <div className="relative sm:max-w-xl lg:max-w-2xl w-full gap-4 overflow-x-scroll no-scrollbar">
-          <div className="flex gap-4 w-max">
-            {contentData.content?.images?.map((image, index) => (
-              <ImageContent key={index} image={image} />
-            ))}
-          </div>
+        <div className="overflow-x-scroll no-scrollbar">
+          <Container size="xs" mx={0} px={0}>
+            <div className="flex gap-4 w-max">
+              {contentData.content?.images?.map((image, index) => (
+                <ImageContent key={index} image={image} />
+              ))}
+            </div>
+          </Container>
         </div>
 
         <div className="flex items-center gap-5">
@@ -176,28 +177,4 @@ export default function CardContent({ contentData }: Props) {
   );
 }
 
-function ImageContent({ image }: { image: string }) {
-  const [isLoadedContent, setIsLoadedContent] = useState(true);
 
-  return (
-    <div
-      className={`max-w-[200px] md:max-w-[250px] lg:max-w-[300px] rounded-lg border${
-        !isLoadedContent ? 'h-max' : 'max-h-[200px]'
-      }`}>
-      <Skeleton
-        className={`w-[200px] h-[200px] md:w-[250px] md:h-[250px] lg:w-[300px] lg:h-[300px] rounded-lg opacity-50 blur-sm ${
-          !isLoadedContent && 'hidden'
-        }`}
-      />
-      <LazyLoad>
-        <Image
-          src={image}
-          alt=""
-          className="w-full overflow-hidden rounded-lg shadow-md bg-gray-200"
-          preview
-          onLoadCapture={() => setIsLoadedContent(false)}
-        />
-      </LazyLoad>
-    </div>
-  );
-}

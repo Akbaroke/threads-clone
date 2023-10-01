@@ -9,7 +9,7 @@
     }
   ],
   "userProfile": {
-    "id": "1",
+    "id": 1,
     "name": "Muhammad Akbar",
     "username": "akbaroke",
     "imageProfile": "https://avatars.githubusercontent.com/u/94231436?v=4",
@@ -20,7 +20,7 @@
   },
   "userThreds": [
     {
-      "id": "1",
+      "id": 1,
       "username": "akbaroke",
       "imageProfile": "https://avatars.githubusercontent.com/u/94231436?v=4",
       "isVerified": true,
@@ -48,7 +48,7 @@
       "created_at": 1695805595
     },
     {
-      "id": "2",
+      "id": 2,
       "username": "akbaroke",
       "imageProfile": "https://avatars.githubusercontent.com/u/94231436?v=4",
       "isVerified": true,
@@ -70,11 +70,56 @@
       },
       "updated_at": 1695805595,
       "created_at": 1695805595
+    },
+    {
+      "username": "akbaroke",
+      "imageProfile": "https://avatars.githubusercontent.com/u/94231436?v=4",
+      "isVerified": true,
+      "content": {
+        "text": "Coba yana",
+        "images": [
+          "blob:http://localhost:3000/dfbf4cba-b7b1-419e-a47a-f95acc7d527f"
+        ],
+        "hastags": []
+      },
+      "isLiked": false,
+      "isReposted": false,
+      "likeCount": 0,
+      "replies": {
+        "count": 0,
+        "imageProfile": []
+      },
+      "updated_at": 1696169074,
+      "created_at": 1696169074,
+      "id": 3
+    },
+    {
+      "username": "akbaroke",
+      "imageProfile": "https://avatars.githubusercontent.com/u/94231436?v=4",
+      "isVerified": true,
+      "content": {
+        "text": "Hallo World",
+        "images": [],
+        "hastags": [
+          "Fyp",
+          "Testing"
+        ]
+      },
+      "isLiked": false,
+      "isReposted": false,
+      "likeCount": 0,
+      "replies": {
+        "count": 0,
+        "imageProfile": []
+      },
+      "updated_at": 1696172808,
+      "created_at": 1696172808,
+      "id": 4
     }
   ],
   "contentDatas": [
     {
-      "id": "1",
+      "id": 1,
       "username": "john_doe",
       "imageProfile": "https://picsum.photos/100?random=11",
       "isVerified": false,
@@ -93,17 +138,17 @@
         ]
       },
       "isLiked": true,
-      "isReposted": true,
+      "isReposted": false,
       "likeCount": 10,
       "replies": {
-        "count": 1,
+        "count": 0,
         "imageProfile": []
       },
       "updated_at": 1695805595,
       "created_at": 1695805595
     },
     {
-      "id": "2",
+      "id": 2,
       "username": "jane_doe",
       "imageProfile": "https://picsum.photos/100?random=21",
       "isVerified": true,
@@ -125,7 +170,7 @@
       "created_at": 1695805595
     },
     {
-      "id": "3",
+      "id": 3,
       "username": "mary_smith",
       "imageProfile": "https://picsum.photos/100?random=31",
       "isVerified": false,
@@ -141,21 +186,18 @@
           "#Lorem"
         ]
       },
-      "isLiked": false,
+      "isLiked": true,
       "isReposted": false,
-      "likeCount": 15,
+      "likeCount": 1,
       "replies": {
-        "count": 3,
-        "imageProfile": [
-          "https://picsum.photos/100?random=32",
-          "https://picsum.photos/100?random=33"
-        ]
+        "count": 0,
+        "imageProfile": []
       },
       "updated_at": 1695805595,
       "created_at": 1695805595
     },
     {
-      "id": "4",
+      "id": 4,
       "username": "jacob_jones",
       "imageProfile": "https://picsum.photos/100?random=41",
       "isVerified": false,
@@ -182,7 +224,7 @@
       "created_at": 1695805595
     },
     {
-      "id": "5",
+      "id": 5,
       "username": "emily_davis",
       "imageProfile": "https://picsum.photos/100?random=51",
       "isVerified": true,
@@ -211,7 +253,7 @@
       "created_at": 1695805595
     },
     {
-      "id": "6",
+      "id": 6,
       "username": "michael_smith",
       "imageProfile": "https://picsum.photos/100?random=61",
       "isVerified": true,
@@ -241,7 +283,7 @@
       "created_at": 1695805595
     },
     {
-      "id": "7",
+      "id": 7,
       "username": "olivia_wilson",
       "imageProfile": "https://picsum.photos/100?random=71",
       "isVerified": false,
@@ -271,7 +313,7 @@
       "created_at": 1695805595
     },
     {
-      "id": "8",
+      "id": 8,
       "username": "william_johnson",
       "imageProfile": "https://picsum.photos/100?random=81",
       "isVerified": false,
@@ -301,7 +343,7 @@
       "created_at": 1695805595
     },
     {
-      "id": "9",
+      "id": 9,
       "username": "david_brown",
       "imageProfile": "https://picsum.photos/100?random=91",
       "isVerified": false,
@@ -330,7 +372,7 @@
       "created_at": 1695805595
     },
     {
-      "id": "10",
+      "id": 10,
       "username": "oliver_taylor",
       "imageProfile": "https://picsum.photos/100?random=101",
       "isVerified": true,
