@@ -5,7 +5,7 @@ import { FiSend } from 'react-icons/fi';
 import { ContentDatas } from '@/pages/Home';
 import ModalProfilePicture from '../molecules/ModalProfilePicture';
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Badge, Container } from '@mantine/core';
 import 'primereact/resources/primereact.min.css';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';
@@ -15,6 +15,9 @@ import VerifedIcon from '../atoms/VerifedIcon';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 import ImageContent from '../atoms/ImageContent';
+import useLinkPreview from '@/hooks/useLinkPreview';
+import { Link } from 'react-router-dom';
+import CardLinkPreview from './CardLinkPreview';
 
 type Props = {
   contentData: ContentDatas;
@@ -27,6 +30,13 @@ export default function CardContent({ contentData }: Props) {
   const [likeCount, setLikeCount] = useState(contentData.likeCount);
   const [isRepost, setIsRepost] = useState(contentData.isReposted);
   const [repostCount, setRepostCount] = useState(contentData.replies.count);
+  const [ulr, setUlr] = useState('');
+  const {
+    // loading,
+    // error,
+    data,
+  } = useLinkPreview(ulr);
+  console.log(data);
 
   const animationRepostCount = {
     '--value': repostCount,
@@ -35,6 +45,16 @@ export default function CardContent({ contentData }: Props) {
   const animationLikeCount = {
     '--value': likeCount,
   } as React.CSSProperties;
+
+  useEffect(() => {
+    function extractFirstURL(text: string): string {
+      const urlRegex = /(https?:\/\/[^\s]+)/;
+      const match = text.match(urlRegex);
+      return match ? match[0] : '';
+    }
+    const firstURL = extractFirstURL(contentData.content.text);
+    firstURL && setUlr(extractFirstURL(contentData.content.text));
+  }, [contentData.content]);
 
   const handleReposted = async () => {
     setIsRepost(!isRepost);
@@ -124,7 +144,18 @@ export default function CardContent({ contentData }: Props) {
         </div>
       </div>
       <div className="relative flex flex-col gap-5 ml-16 -top-6 z-20">
-        <p className="whitespace-pre-line">{contentData.content.text}</p>
+        <p className="whitespace-pre-line">
+          {contentData.content.text.replace(ulr, '')}
+        </p>
+        {ulr && (
+          <Link
+            target="_blank"
+            to={ulr}
+            className="text-blue-500 hover:underline">
+            {ulr}
+          </Link>
+        )}
+        {data && <CardLinkPreview data={data} />}
         <div className="flex gap-2">
           {contentData.content.hastags?.flatMap((value, index) => (
             <Badge key={index} color="gray" size="sm">

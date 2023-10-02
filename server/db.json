@@ -154,10 +154,8 @@
       "isVerified": true,
       "isFollowing": true,
       "content": {
-        "text": "Sed ut perspiciatis unde omnis iste natus error",
-        "images": [
-          "https://picsum.photos/500/700?random=20"
-        ]
+        "text": "Sed ut perspiciatis unde omnis iste natus error https://www.youtube.com/watch?v=p9GROkK6_pM",
+        "images": ["https://picsum.photos/500/700?random=20"]
       },
       "isLiked": true,
       "isReposted": true,
