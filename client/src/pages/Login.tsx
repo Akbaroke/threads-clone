@@ -2,10 +2,10 @@ import Button from '@/components/atoms/Button';
 import Input from '@/components/atoms/Input';
 import { isEmail, useForm } from '@mantine/form';
 import { FcGoogle } from 'react-icons/fc';
-import LOGO from '@/assets/threads-logo.png';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '@/redux/actions/authAsync';
+import CardAuth from '@/components/organisms/CardAuth';
 
 type FormType = {
   email: string;
@@ -52,24 +52,24 @@ export default function Login() {
   };
 
   return (
-    <div className="shadow-xl rounded-xl p-5 max-w-md m-auto my-14">
-      <div className="flex flex-col items-center gap-2">
-        <img src={LOGO} alt="logo" className="w-[35px]" />
-        <h1 className="font-bold text-[22px]">Sign in</h1>
-      </div>
-      <div className="my-6 flex flex-col gap-6">
+    <CardAuth
+      tittle="Sign in"
+      oAuth={
         <Button
           variant="outline"
           className="flex items-center justify-center gap-2">
           <FcGoogle size={18} />
           Sign in with google
         </Button>
-        <div className="flex items-center gap-2 [&>span]:w-full [&>span]:border [&>span]:border-gray-100 [&>span]:h-max [&>span]:rounded-full font-semibold text-[14px]">
-          <span></span>
-          <p>Or</p>
-          <span></span>
-        </div>
-      </div>
+      }
+      footer={
+        <>
+          Dont have an account ?{' '}
+          <Link to="/signup" className="font-semibold hover:underline">
+            Sign up
+          </Link>
+        </>
+      }>
       <form
         className="flex flex-col gap-2"
         onSubmit={form.onSubmit(handleSubmit)}>
@@ -95,12 +95,6 @@ export default function Login() {
           Sign in
         </Button>
       </form>
-      <div className="my-3">
-        Dont have an account ?{' '}
-        <Link to="/signup" className="font-semibold hover:underline">
-          Sign up
-        </Link>
-      </div>
-    </div>
+    </CardAuth>
   );
 }

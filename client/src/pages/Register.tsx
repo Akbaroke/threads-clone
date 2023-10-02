@@ -1,10 +1,10 @@
 import Button from '@/components/atoms/Button';
 import Input from '@/components/atoms/Input';
 import { isEmail, matchesField, useForm } from '@mantine/form';
-import { FcGoogle } from 'react-icons/fc';
-import LOGO from '@/assets/threads-logo.png';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import ButtonGoogle from '@/components/atoms/ButtonGoogle';
+import CardAuth from '@/components/organisms/CardAuth';
 
 type FormType = {
   username: string;
@@ -54,24 +54,17 @@ export default function Register() {
   };
 
   return (
-    <div className="shadow-xl rounded-xl p-5 max-w-md m-auto my-14">
-      <div className="flex flex-col items-center gap-2">
-        <img src={LOGO} alt="logo" className="w-[35px]" />
-        <h1 className="font-bold text-[22px]">Sign up</h1>
-      </div>
-      <div className="my-6 flex flex-col gap-6">
-        <Button
-          variant="outline"
-          className="flex items-center justify-center gap-2">
-          <FcGoogle size={18} />
-          Sign up with google
-        </Button>
-        <div className="flex items-center gap-2 [&>span]:w-full [&>span]:border [&>span]:border-gray-100 [&>span]:h-max [&>span]:rounded-full text-[14px] font-semibold">
-          <span></span>
-          <p>Or</p>
-          <span></span>
-        </div>
-      </div>
+    <CardAuth
+      tittle="Sign up"
+      oAuth={<ButtonGoogle>Sign up with google</ButtonGoogle>}
+      footer={
+        <>
+          Already have an account?{' '}
+          <Link to="/signin" className="font-semibold hover:underline">
+            Signin
+          </Link>
+        </>
+      }>
       <form
         className="flex flex-col gap-2"
         onSubmit={form.onSubmit(handleSubmit)}>
@@ -115,12 +108,6 @@ export default function Register() {
           Sign up
         </Button>
       </form>
-      <div className="my-3">
-        Already have an account?{' '}
-        <Link to="/signin" className="font-semibold hover:underline">
-          Signin
-        </Link>
-      </div>
-    </div>
+    </CardAuth>
   );
 }
