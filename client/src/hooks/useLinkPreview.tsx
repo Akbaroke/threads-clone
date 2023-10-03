@@ -25,6 +25,7 @@ export default function useLinkPreview(url: string) {
         const res = await axios.get(
           `https://getlinkpreview.onrender.com/?url=${url}`
         );
+        console.log(res.data);
         setData(res.data);
       } catch (error) {
         const err = error as AxiosError;

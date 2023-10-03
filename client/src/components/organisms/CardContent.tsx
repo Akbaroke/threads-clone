@@ -36,7 +36,6 @@ export default function CardContent({ contentData }: Props) {
     // error,
     data,
   } = useLinkPreview(ulr);
-  console.log(data);
 
   const animationRepostCount = {
     '--value': repostCount,
@@ -147,15 +146,6 @@ export default function CardContent({ contentData }: Props) {
         <p className="whitespace-pre-line">
           {contentData.content.text.replace(ulr, '')}
         </p>
-        {ulr && (
-          <Link
-            target="_blank"
-            to={ulr}
-            className="text-blue-500 hover:underline">
-            {ulr}
-          </Link>
-        )}
-        {data && <CardLinkPreview data={data} />}
         <div className="flex gap-2">
           {contentData.content.hastags?.flatMap((value, index) => (
             <Badge key={index} color="gray" size="sm">
@@ -163,6 +153,14 @@ export default function CardContent({ contentData }: Props) {
             </Badge>
           ))}
         </div>
+        {ulr && (
+          <Link
+            target="_blank"
+            to={ulr}
+            className="text-blue-500 hover:underline max-w-[180px] truncate">
+            {ulr.replace('http', '').replace('https', '')}
+          </Link>
+        )}
         <div className="overflow-x-scroll no-scrollbar">
           <Container size="xs" mx={0} px={0}>
             <div className="flex gap-4 w-max">
@@ -172,6 +170,7 @@ export default function CardContent({ contentData }: Props) {
             </div>
           </Container>
         </div>
+        {data && <CardLinkPreview data={data} />}
 
         <div className="flex items-center gap-5">
           <LikeButton isLike={isLike} onLike={handleLiked} />
