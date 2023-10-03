@@ -5,7 +5,7 @@ import CardContent from '@/components/organisms/CardContent';
 import TabProfile from '@/components/templates/TabProfile';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ContentDatas } from './Home';
 
 interface ProfileResponse {
@@ -15,11 +15,12 @@ interface ProfileResponse {
   imageProfile: string;
   isVerified: boolean;
   bio: string;
-  linkWebsite: string;
+  link: string;
   followersCount: number;
 }
 
 export default function Profile() {
+  const navigate = useNavigate();
   const [profile, setProfile] = useState<ProfileResponse>();
   const [threads, setThreads] = useState<ContentDatas[]>();
   const [reposts, setReposts] = useState<ContentDatas[]>();
@@ -63,11 +64,9 @@ export default function Profile() {
             <p className="text-[12px] sm:text-[14px] my-1">{profile.bio}</p>
             <div className="flex gap-2 text-gray-400 text-[12px] sm:text-[14px]">
               <Link to="/">{profile.followersCount} followers</Link>
-              {profile.linkWebsite && <p>∙</p>}
-              <Link to={profile.linkWebsite} target="_blank">
-                {profile.linkWebsite
-                  .replace('https://', '')
-                  .replace('http://', '')}
+              {profile.link && <p>∙</p>}
+              <Link to={profile.link} target="_blank">
+                {profile.link?.replace('https://', '').replace('http://', '')}
               </Link>
             </div>
           </div>
@@ -87,7 +86,9 @@ export default function Profile() {
           </div>
         </div>
         <div className="flex gap-3 mt-4">
-          <Button variant="outline">Edit profile</Button>
+          <Button variant="outline" onClick={() => navigate('edit')}>
+            Edit profile
+          </Button>
           <Button variant="outline">Share profile</Button>
         </div>
       </div>
