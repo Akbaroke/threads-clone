@@ -158,7 +158,7 @@ export default function CardContent({ contentData }: Props) {
             target="_blank"
             to={ulr}
             className="text-blue-500 hover:underline max-w-[180px] truncate">
-            {ulr.replace('http', '').replace('https', '')}
+            {ulr.replace('https://', '').replace('http://', '')}
           </Link>
         )}
         <div className="overflow-x-scroll no-scrollbar">
