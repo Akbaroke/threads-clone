@@ -21,27 +21,10 @@ export const loginUser = createAsyncThunk<
   { state: RootState }
 >('auth/loginUser', async (credentials, thunkAPI) => {
   try {
-    const response = await axios.get('http://localhost:5000/users');
+    const response = await axios.post(`${process.env.SERVER_URL}`, {});
 
-    const query = response.data.find(
-      (user: UsersResponse) => user.email === credentials.email
-    );
-    if (query) {
-      if (query.password === credentials.password) {
-        const user: UserType = {
-          email: query.email,
-          username: query.username,
-          image: 'https://avatars.githubusercontent.com/u/94231436?v=4',
-          role: query.role,
-        };
-        thunkAPI.dispatch(login(user));
-        return user;
-      } else {
-        throw new Error('Login failed');
-      }
-    } else {
-      throw new Error('Login failed');
-    }
+    thunkAPI.dispatch(login(user));
+   
   } catch (error) {
     const err = error as AxiosError;
     return thunkAPI.rejectWithValue(err.message);

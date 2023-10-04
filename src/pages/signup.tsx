@@ -1,9 +1,14 @@
+import axios from '@/axios';
 import Button from '@/components/atoms/Button';
 import GoogleButton from '@/components/atoms/GoogleButton';
 import Input from '@/components/atoms/Input';
+import {
+  toastError,
+  toastLoading,
+  toastSuccess,
+} from '@/components/atoms/Toast';
 import CardAuth from '@/components/organisms/CardAuth';
 import { isEmail, matchesField, useForm } from '@mantine/form';
-import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -40,16 +45,24 @@ export default function Signup() {
     },
   });
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+    toastLoading('Siginup prosess...', 'signup');
     try {
-      axios.post('http://localhost:5000/users', {
-        username: form.values.username,
-        email: form.values.email,
-        password: form.values.password,
-      });
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/signup`,
+        {
+          username: form.values.username,
+          email: form.values.email,
+          password: form.values.password,
+          confirmPassword: form.values.confirmPassword,
+        }
+      );
+      toastSuccess('Signup success', 'signup');
+      console.log(res.data);
       form.reset();
       push('/signin');
     } catch (error) {
+      toastError('Signup failed', 'signup');
       console.log(error);
     }
   };
