@@ -1,4 +1,4 @@
-import { toast } from 'react-hot-toast';
+import { toast } from 'sonner';
 
 export const toastSuccess = (message: string, id: string) =>
   toast.success(message, { id });

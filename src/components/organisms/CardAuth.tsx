@@ -15,18 +15,18 @@ export default function CardAuth({ children, tittle, oAuth, footer }: Props) {
         <Image src={LOGO} alt="logo" className="w-[35px]" />
         <h1 className="font-bold text-[22px]">{tittle}</h1>
       </div>
-      <div className="flex flex-col gap-6 my-6">
-        {oAuth}
-        {oAuth && (
+      {oAuth && (
+        <div className="flex flex-col gap-6 my-6">
+          {oAuth}
           <div className="flex items-center gap-2 [&>span]:w-full [&>span]:border [&>span]:border-gray-100 [&>span]:h-max [&>span]:rounded-full text-[14px] font-semibold">
             <span></span>
             <p>Or</p>
             <span></span>
           </div>
-        )}
-      </div>
+        </div>
+      )}
       {children}
-      <div className="my-3">{footer}</div>
+      <div className="my-3 text-[14px]">{footer}</div>
     </div>
   );
 }

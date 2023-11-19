@@ -1,4 +1,4 @@
-import axios from '@/axios';
+import axios from 'axios';
 import Button from '@/components/atoms/Button';
 import GoogleButton from '@/components/atoms/GoogleButton';
 import Input from '@/components/atoms/Input';
@@ -8,6 +8,8 @@ import {
   toastSuccess,
 } from '@/components/atoms/Toast';
 import CardAuth from '@/components/organisms/CardAuth';
+import { encryptData } from '@/utils/cipher';
+import promise from '@/utils/promise';
 import { isEmail, matchesField, useForm } from '@mantine/form';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -48,8 +50,8 @@ export default function Signup() {
   const handleSubmit = async () => {
     toastLoading('Siginup prosess...', 'signup');
     try {
-      const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/signup`,
+      const { data } = await axios.post(
+        'http://localhost:5000/v1/api/auth/signup',
         {
           username: form.values.username,
           email: form.values.email,
@@ -57,10 +59,15 @@ export default function Signup() {
           confirmPassword: form.values.confirmPassword,
         }
       );
+      console.log(data);
       toastSuccess('Signup success', 'signup');
-      console.log(res.data);
       form.reset();
-      push('/signin');
+      push({
+        pathname: '/verify',
+        query: {
+          data: encryptData(form.values.email),
+        },
+      });
     } catch (error) {
       toastError('Signup failed', 'signup');
       console.log(error);
