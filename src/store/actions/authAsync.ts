@@ -1,7 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { UserType, login } from '../slices/authSlice';
-import axios, { AxiosError } from 'axios';
+import { AxiosError } from 'axios';
 import { RootState } from '..';
+import axios from '@/axios';
 
 interface UsersResponse {
   username: string;
@@ -21,10 +22,12 @@ export const loginUser = createAsyncThunk<
   { state: RootState }
 >('auth/loginUser', async (credentials, thunkAPI) => {
   try {
-    const response = await axios.post(`${process.env.SERVER_URL}`, {});
+    const response = await axios.post('/auth/signin', {
+      email: credentials.email,
+      password: credentials.password,
+    });
 
-    thunkAPI.dispatch(login(user));
-   
+    thunkAPI.dispatch(login(response.data));
   } catch (error) {
     const err = error as AxiosError;
     return thunkAPI.rejectWithValue(err.message);
