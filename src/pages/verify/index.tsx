@@ -1,6 +1,10 @@
 import axios from '@/axios';
 import Button from '@/components/atoms/Button';
-import { toastLoading, toastSuccess } from '@/components/atoms/Toast';
+import {
+  toastError,
+  toastLoading,
+  toastSuccess,
+} from '@/components/atoms/Toast';
 import CardAuth from '@/components/organisms/CardAuth';
 import useCountdown from '@/hooks/useCountdown';
 import { decryptData } from '@/utils/cipher';
@@ -17,7 +21,8 @@ type Props = {
 };
 
 export default function Verify({ email, token }: Props) {
-  const { countdown, setCountdown } = useCountdown(20);
+  const LIMIT_RESEND_EMAIL_VERIFY = 60;
+  const { countdown, setCountdown } = useCountdown(LIMIT_RESEND_EMAIL_VERIFY);
   const [isLoading, setIsLoading] = useState(token ? true : false);
 
   const animateCountdown = {
@@ -27,10 +32,19 @@ export default function Verify({ email, token }: Props) {
   const handleResend = async () => {
     setIsLoading(true);
     toastLoading('Please wait...', 'resend');
-    await promise();
-    setCountdown(20);
-    toastSuccess('Email sent', 'resend');
-    setIsLoading(false);
+    try {
+      const { data } = await axios.post('/auth/resendverification', {
+        email,
+      });
+      console.log(data);
+      setCountdown(LIMIT_RESEND_EMAIL_VERIFY);
+      toastSuccess('Email sent', 'resend');
+    } catch (error) {
+      console.log(errorMessage(error));
+      toastError('Email failed to send', 'resend');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -62,9 +76,9 @@ export default function Verify({ email, token }: Props) {
           </div>
           {!isLoading && (
             <>
-              <div className="border p-3 rounded-lg bg-gray-100">
-                Just click on the link that email to complete your signup. If
-                you don`t see it, you may need to <b>check your spam</b> folder.
+              <div className="border p-3 rounded-lg bg-red-500 mb-5">
+                Sorry, your account verification was unsuccessful. Make sure you
+                follow the verification link correctly.
               </div>
               <Button onClick={handleResend}>Sign in</Button>
             </>

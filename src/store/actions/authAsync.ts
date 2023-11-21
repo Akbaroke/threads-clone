@@ -1,4 +1,4 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, AsyncThunkPayloadCreator } from '@reduxjs/toolkit';
 import { UserType, login } from '../slices/authSlice';
 import { AxiosError } from 'axios';
 import { RootState } from '..';
@@ -22,14 +22,20 @@ export const loginUser = createAsyncThunk<
   { state: RootState }
 >('auth/loginUser', async (credentials, thunkAPI) => {
   try {
-    const response = await axios.post('/auth/signin', {
+    const response = await axios.post<UsersResponse>('/auth/signin', {
       email: credentials.email,
       password: credentials.password,
     });
 
-    thunkAPI.dispatch(login(response.data));
+    const user = response.data as unknown as UserType;
+    thunkAPI.dispatch(login(user));
+
+    // Fix the return value in the success case to ensure the correct type
+    return user;
   } catch (error) {
     const err = error as AxiosError;
+
+    // Fix the return type in the failure case to ensure the correct type
     return thunkAPI.rejectWithValue(err.message);
   }
 });
