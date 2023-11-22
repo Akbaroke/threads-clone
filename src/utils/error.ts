@@ -5,4 +5,10 @@ const errorMessage = (error: unknown) => {
   return errorRes.response?.data.errors.message;
 };
 
-export default errorMessage;
+
+const errorStatus = (error: unknown) => {
+  const errorRes = error as AxiosError;
+  return errorRes.response?.data.errors.statusCode;
+};
+
+export { errorMessage, errorStatus };

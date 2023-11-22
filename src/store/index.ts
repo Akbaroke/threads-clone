@@ -9,9 +9,9 @@ export const store = configureStore({
   },
 });
 
-store.subscribe(() => {
-  console.log('store change:', store.getState());
-});
+// store.subscribe(() => {
+//   console.log('store change:', store.getState());
+// });
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppThunk<ReturnType = void> = ThunkAction<

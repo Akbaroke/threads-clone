@@ -2,11 +2,14 @@ import Button from '@/components/atoms/Button';
 import Input from '@/components/atoms/Input';
 import { isEmail, useForm } from '@mantine/form';
 import { FcGoogle } from 'react-icons/fc';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import CardAuth from '@/components/organisms/CardAuth';
 import { loginUser } from '@/store/actions/authAsync';
 import Link from 'next/link';
+import { RootState } from '@/store';
 import { useRouter } from 'next/router';
+import { encryptData } from '@/utils/cipher';
+import { resendEmailVerification } from '@/services/resendEmailVerification';
 
 type FormType = {
   email: string;
@@ -16,6 +19,7 @@ type FormType = {
 export default function Signin() {
   const dispatch = useDispatch();
   const { push } = useRouter();
+  const { isLoading } = useSelector((state: RootState) => state.auth);
 
   const form = useForm<FormType>({
     validateInputOnChange: true,
@@ -31,21 +35,23 @@ export default function Signin() {
     },
   });
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     try {
       // @ts-ignore
-      dispatch(loginUser(form.values)).then((user) => {
-        console.log('Login :', user.meta);
-        if (user.meta.requestStatus === 'fulfilled') {
-          console.log('Login Success');
-          push('/');
-          form.reset();
-        } else {
-          console.log('Login Failed');
-        }
-      });
+      const e = await dispatch(loginUser(form.values));
+      e.payload.response.status === 200 && push('/');
+      if (e.payload.response.status === 403) {
+        form.reset();
+        push({
+          pathname: '/verify',
+          query: {
+            data: encryptData(form.values.email),
+          },
+        });
+        await resendEmailVerification(form.values.email);
+      }
     } catch (error) {
-      console.error('Login Failed', error);
+      console.error(error);
     }
   };
 
@@ -89,7 +95,7 @@ export default function Signin() {
           errorLabel={form.errors.password as string}
           onChange={(e) => form.setFieldValue('password', e as string)}
         />
-        <Button className="my-3" type="submit">
+        <Button className="my-3" type="submit" isLoading={isLoading}>
           Sign in
         </Button>
       </form>

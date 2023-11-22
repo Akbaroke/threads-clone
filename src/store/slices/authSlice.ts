@@ -1,5 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { loginUser } from '../actions/authAsync';
+import {
+  toastError,
+  toastLoading,
+  toastSuccess,
+} from '@/components/atoms/Toast';
 
 interface AuthState {
   isAuth: boolean;
@@ -36,14 +41,34 @@ export const authSlice = createSlice({
   extraReducers(builder) {
     builder
       .addCase(loginUser.pending, (state) => {
+        toastLoading('Login process...', 'login');
         state.isLoading = true;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
+        toastSuccess('Login success', 'login');
         state.isLoading = false;
         state.isAuth = true;
-        state.user = action.payload;
+        state.user = {
+          email: action.payload.email,
+          username: action.payload.username,
+          image: action.payload.image,
+          role: action.payload.role,
+        };
       })
-      .addCase(loginUser.rejected, (state) => {
+      .addCase(loginUser.rejected, (state, action) => {
+        // @ts-ignore
+        switch (action.payload.response.status) {
+          case 400:
+            toastError('Login failed, Incorrect email or password.', 'login');
+            break;
+          case 403:
+            toastError('Login failed, Email has not been verified.', 'login');
+            break;
+          default:
+            toastError('Login failed ', 'login');
+            break;
+        }
+
         state.isLoading = false;
       });
   },

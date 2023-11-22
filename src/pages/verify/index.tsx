@@ -7,12 +7,13 @@ import {
 } from '@/components/atoms/Toast';
 import CardAuth from '@/components/organisms/CardAuth';
 import useCountdown from '@/hooks/useCountdown';
+import { resendEmailVerification } from '@/services/resendEmailVerification';
 import { decryptData } from '@/utils/cipher';
-import errorMessage from '@/utils/error';
+import { errorMessage, errorStatus } from '@/utils/error';
 import hideEmail from '@/utils/hideEmail';
-import promise from '@/utils/promise';
 import { Loader } from '@mantine/core';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
 type Props = {
@@ -20,10 +21,14 @@ type Props = {
   token: string;
 };
 
+type VerifyStatusType = 'expired' | 'verified' | 'invalid' | null;
+
 export default function Verify({ email, token }: Props) {
   const LIMIT_RESEND_EMAIL_VERIFY = 60;
+  const { push } = useRouter();
   const { countdown, setCountdown } = useCountdown(LIMIT_RESEND_EMAIL_VERIFY);
   const [isLoading, setIsLoading] = useState(token ? true : false);
+  const [verifyStatus, setVerifyStatus] = useState<VerifyStatusType>(null);
 
   const animateCountdown = {
     '--value': countdown,
@@ -33,10 +38,7 @@ export default function Verify({ email, token }: Props) {
     setIsLoading(true);
     toastLoading('Please wait...', 'resend');
     try {
-      const { data } = await axios.post('/auth/resendverification', {
-        email,
-      });
-      console.log(data);
+      await resendEmailVerification(email);
       setCountdown(LIMIT_RESEND_EMAIL_VERIFY);
       toastSuccess('Email sent', 'resend');
     } catch (error) {
@@ -53,9 +55,13 @@ export default function Verify({ email, token }: Props) {
         const res = await axios.post('/verify/user', {
           token,
         });
-        console.log(res.data);
+        console.log(res);
       } catch (error) {
-        console.log(errorMessage(error));
+        if (errorStatus(error) === 410) {
+          setVerifyStatus('expired');
+          return;
+        }
+        setVerifyStatus('invalid');
       } finally {
         setIsLoading(false);
       }
@@ -69,19 +75,33 @@ export default function Verify({ email, token }: Props) {
   if (token) {
     return (
       <CardAuth tittle="Email Verification">
-        <div className="text-center text-[14px]">
-          <div className="flex flex-col gap-4 my-7">
-            <Loader color="dark" className="mx-auto" size="sm" />
-            <p>Please wait for verification to be processed</p>
-          </div>
-          {!isLoading && (
-            <>
-              <div className="border p-3 rounded-lg bg-red-500 mb-5">
-                Sorry, your account verification was unsuccessful. Make sure you
-                follow the verification link correctly.
-              </div>
-              <Button onClick={handleResend}>Sign in</Button>
-            </>
+        <div className="text-center text-[14px] mt-5">
+          {!isLoading ? (
+            <div className="flex flex-col gap-5">
+              {verifyStatus === 'expired' && (
+                <div className="border p-3 rounded-lg bg-red-500/90 text-white">
+                  Sorry, the verification link has expired.
+                </div>
+              )}
+              {verifyStatus === 'invalid' && (
+                <div className="border p-3 rounded-lg bg-red-500/90 text-white">
+                  Sorry, your account verification was unsuccessful. Make sure
+                  you follow the verification link correctly.
+                </div>
+              )}
+              {verifyStatus === 'verified' && (
+                <div className="border p-3 rounded-lg bg-green-500/90">
+                  Congrats! Your account has been successfully verified. Now you
+                  can access all the features and benefits it has to offer.
+                </div>
+              )}
+              <Button onClick={() => push('/signin')}>Sign in</Button>
+            </div>
+          ) : (
+            <div className="flex flex-col gap-4 my-7">
+              <Loader color="dark" className="mx-auto" size="sm" />
+              <p>Please wait for verification to be processed</p>
+            </div>
           )}
         </div>
       </CardAuth>
