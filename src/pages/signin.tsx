@@ -35,7 +35,7 @@ export default function Signin() {
     try {
       // @ts-ignore
       dispatch(loginUser(form.values)).then((user) => {
-        console.log('Login :', user.meta.requestStatus);
+        console.log('Login :', user.meta);
         if (user.meta.requestStatus === 'fulfilled') {
           console.log('Login Success');
           push('/');

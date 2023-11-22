@@ -3,13 +3,11 @@ import { UserType, login } from '../slices/authSlice';
 import { AxiosError } from 'axios';
 import { RootState } from '..';
 import axios from '@/axios';
-
-interface UsersResponse {
-  username: string;
-  email: string;
-  password: string;
-  role: 'user' | 'admin';
-}
+import {
+  toastError,
+  toastLoading,
+  toastSuccess,
+} from '@/components/atoms/Toast';
 
 interface Credentials {
   email: string;
@@ -20,20 +18,25 @@ export const loginUser = createAsyncThunk<
   UserType,
   Credentials,
   { state: RootState }
->('auth/loginUser', async (credentials, thunkAPI) => {
+>('auth/loginUser', async ({ email, password }, thunkAPI) => {
+  toastLoading('Login process...', 'login');
+  toastLoading('Login process...', 'login');
   try {
-    const response = await axios.post<UsersResponse>('/auth/signin', {
-      email: credentials.email,
-      password: credentials.password,
+    const response = await axios.post<UserType>('/auth/signin', {
+      email,
+      password,
     });
 
-    const user = response.data as unknown as UserType;
-    thunkAPI.dispatch(login(user));
+    const user = response.data as UserType;
+    toastSuccess('Login success', 'login');
 
     // Fix the return value in the success case to ensure the correct type
     return user;
   } catch (error) {
     const err = error as AxiosError;
+    console.log(error, ': error');
+
+    toastError('Login failed', 'login');
 
     // Fix the return type in the failure case to ensure the correct type
     return thunkAPI.rejectWithValue(err.message);
