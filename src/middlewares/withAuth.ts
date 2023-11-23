@@ -17,10 +17,10 @@ export default function withAuth(
     //   secret: process.env.NEXTAUTH_SECRET,
     // });
 
-    if (requiredAuth[0].includes(pathname)) {
-      console.log('home', pathname);
-      return NextResponse.rewrite(`${req.nextUrl.origin}/home`);
-    }
+    // if (requiredAuth[0].includes(pathname)) {
+    //   console.log('home', pathname);
+    //   return NextResponse.rewrite(`${req.nextUrl.origin}/home`);
+    // }
     // if (requiredAuth.includes(pathname)) {
     //   return NextResponse.rewrite(`${req.nextUrl.origin}/`);
     // }

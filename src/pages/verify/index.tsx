@@ -52,10 +52,10 @@ export default function Verify({ email, token }: Props) {
   useEffect(() => {
     const fetch = async (token: string) => {
       try {
-        const res = await axios.post('/verify/user', {
+        await axios.post('/verify/user', {
           token,
         });
-        console.log(res);
+        setVerifyStatus('verified');
       } catch (error) {
         if (errorStatus(error) === 410) {
           setVerifyStatus('expired');

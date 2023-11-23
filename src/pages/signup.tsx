@@ -1,4 +1,3 @@
-import axios from 'axios';
 import Button from '@/components/atoms/Button';
 import GoogleButton from '@/components/atoms/GoogleButton';
 import Input from '@/components/atoms/Input';
@@ -9,10 +8,10 @@ import {
 } from '@/components/atoms/Toast';
 import CardAuth from '@/components/organisms/CardAuth';
 import { encryptData } from '@/utils/cipher';
-import promise from '@/utils/promise';
 import { isEmail, matchesField, useForm } from '@mantine/form';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import axios from '@/axios';
 
 type FormType = {
   username: string;
@@ -50,16 +49,12 @@ export default function Signup() {
   const handleSubmit = async () => {
     toastLoading('Siginup prosess...', 'signup');
     try {
-      const { data } = await axios.post(
-        'http://localhost:5000/v1/api/auth/signup',
-        {
-          username: form.values.username,
-          email: form.values.email,
-          password: form.values.password,
-          confirmPassword: form.values.confirmPassword,
-        }
-      );
-      console.log(data);
+      const { data } = await axios.post('/auth/signup', {
+        username: form.values.username,
+        email: form.values.email,
+        password: form.values.password,
+        confirmPassword: form.values.confirmPassword,
+      });
       toastSuccess('Signup success', 'signup');
       form.reset();
       push({

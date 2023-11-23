@@ -57,7 +57,7 @@ export const authSlice = createSlice({
       })
       .addCase(loginUser.rejected, (state, action) => {
         // @ts-ignore
-        switch (action.payload.response.status) {
+        switch (action.payload.statusCode) {
           case 400:
             toastError('Login failed, Incorrect email or password.', 'login');
             break;

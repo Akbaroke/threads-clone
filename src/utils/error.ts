@@ -1,14 +1,15 @@
 import { AxiosError } from 'axios';
 
-const errorMessage = (error: unknown) => {
-  const errorRes = error as AxiosError;
-  return errorRes.response?.data.errors.message;
+const responseError = (error: unknown) => {
+  return error.response?.data.errors;
 };
 
+const errorMessage = (error: unknown) => {
+  return error.response?.data.errors.message;
+};
 
 const errorStatus = (error: unknown) => {
-  const errorRes = error as AxiosError;
-  return errorRes.response?.data.errors.statusCode;
+  return error.response?.data.errors.statusCode;
 };
 
-export { errorMessage, errorStatus };
+export { responseError, errorMessage, errorStatus };

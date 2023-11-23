@@ -35,21 +35,25 @@ export default function Signin() {
     },
   });
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     try {
       // @ts-ignore
-      const e = await dispatch(loginUser(form.values));
-      e.payload.response.status === 200 && push('/');
-      if (e.payload.response.status === 403) {
-        form.reset();
-        push({
-          pathname: '/verify',
-          query: {
-            data: encryptData(form.values.email),
-          },
-        });
-        await resendEmailVerification(form.values.email);
-      }
+      dispatch(loginUser(form.values)).then((res) => {
+        console.log(res.payload);
+        if (res.payload?.statusCode === 200) {
+          push('/');
+        }
+        if (res.payload?.statusCode === 403) {
+          form.reset();
+          push({
+            pathname: '/verify',
+            query: {
+              data: encryptData(form.values.email),
+            },
+          });
+          resendEmailVerification(form.values.email);
+        }
+      });
     } catch (error) {
       console.error(error);
     }
