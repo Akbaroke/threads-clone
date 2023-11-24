@@ -5,6 +5,9 @@ import {
   toastLoading,
   toastSuccess,
 } from '@/components/atoms/Toast';
+import LabelVerifyStatus, {
+  VerifyStatusType,
+} from '@/components/molecules/LabelVerifyStatus';
 import CardAuth from '@/components/organisms/CardAuth';
 import useCountdown from '@/hooks/useCountdown';
 import { resendEmailVerification } from '@/services/resendEmailVerification';
@@ -20,8 +23,6 @@ type Props = {
   email: string;
   token: string;
 };
-
-type VerifyStatusType = 'expired' | 'verified' | 'invalid' | null;
 
 export default function Verify({ email, token }: Props) {
   const LIMIT_RESEND_EMAIL_VERIFY = 60;
@@ -42,7 +43,6 @@ export default function Verify({ email, token }: Props) {
       setCountdown(LIMIT_RESEND_EMAIL_VERIFY);
       toastSuccess('Email sent', 'resend');
     } catch (error) {
-      console.log(errorMessage(error));
       toastError('Email failed to send', 'resend');
     } finally {
       setIsLoading(false);
@@ -57,19 +57,13 @@ export default function Verify({ email, token }: Props) {
         });
         setVerifyStatus('verified');
       } catch (error) {
-        if (errorStatus(error) === 410) {
-          setVerifyStatus('expired');
-          return;
-        }
+        if (errorStatus(error) === 410) return setVerifyStatus('expired');
         setVerifyStatus('invalid');
       } finally {
         setIsLoading(false);
       }
     };
-
-    if (token) {
-      fetch(token);
-    }
+    token && fetch(token);
   }, [token]);
 
   if (token) {
@@ -78,23 +72,7 @@ export default function Verify({ email, token }: Props) {
         <div className="text-center text-[14px] mt-5">
           {!isLoading ? (
             <div className="flex flex-col gap-5">
-              {verifyStatus === 'expired' && (
-                <div className="border p-3 rounded-lg bg-red-500/90 text-white">
-                  Sorry, the verification link has expired.
-                </div>
-              )}
-              {verifyStatus === 'invalid' && (
-                <div className="border p-3 rounded-lg bg-red-500/90 text-white">
-                  Sorry, your account verification was unsuccessful. Make sure
-                  you follow the verification link correctly.
-                </div>
-              )}
-              {verifyStatus === 'verified' && (
-                <div className="border p-3 rounded-lg bg-green-500/90">
-                  Congrats! Your account has been successfully verified. Now you
-                  can access all the features and benefits it has to offer.
-                </div>
-              )}
+              <LabelVerifyStatus verifyStatus={verifyStatus} />
               <Button onClick={() => push('/signin')}>Sign in</Button>
             </div>
           ) : (

@@ -64,8 +64,12 @@ export const authSlice = createSlice({
           case 403:
             toastError('Login failed, Email has not been verified.', 'login');
             break;
+          case 500:
+            toastError('Login failed, Internal server error.', 'login');
+            break;
           default:
-            toastError('Login failed ', 'login');
+            // @ts-ignore
+            toastError(`Login failed, ${action.payload.message}`, 'login');
             break;
         }
 

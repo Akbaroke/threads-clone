@@ -36,14 +36,13 @@ export default function Signin() {
   });
 
   const handleSubmit = () => {
-    try {
-      // @ts-ignore
-      dispatch(loginUser(form.values)).then((res) => {
-        console.log(res.payload);
-        if (res.payload?.statusCode === 200) {
+    // @ts-ignore
+    dispatch(loginUser(form.values)).then((res) => {
+      switch (res.payload?.statusCode) {
+        case 200:
           push('/');
-        }
-        if (res.payload?.statusCode === 403) {
+          break;
+        case 403:
           form.reset();
           push({
             pathname: '/verify',
@@ -52,11 +51,9 @@ export default function Signin() {
             },
           });
           resendEmailVerification(form.values.email);
-        }
-      });
-    } catch (error) {
-      console.error(error);
-    }
+          break;
+      }
+    });
   };
 
   return (
@@ -99,6 +96,11 @@ export default function Signin() {
           errorLabel={form.errors.password as string}
           onChange={(e) => form.setFieldValue('password', e as string)}
         />
+        <Link
+          href="/forgotPassword"
+          className="text-[14px] ml-auto w-max hover:underline">
+          Forgot password?
+        </Link>
         <Button className="my-3" type="submit" isLoading={isLoading}>
           Sign in
         </Button>

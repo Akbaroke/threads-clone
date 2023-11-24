@@ -2,7 +2,7 @@ import { AiFillPlusCircle } from 'react-icons/ai';
 import LikeButton from '../atoms/LikeButton';
 import { FaRegComment } from 'react-icons/fa';
 import { FiSend } from 'react-icons/fi';
-import axios from 'axios';
+import axios from '@/axios';
 import { useEffect, useState } from 'react';
 import { Badge, Container } from '@mantine/core';
 import 'primereact/resources/primereact.min.css';
@@ -82,16 +82,13 @@ export default function CardContent({ contentData }: Props) {
     setIsRepost(!isRepost);
     setRepostCount(isRepost ? repostCount - 1 : repostCount + 1);
     try {
-      const res = await axios.patch(
-        `http://localhost:5000/contentDatas/${contentData.id}`,
-        {
-          isReposted: !isRepost,
-          replies: {
-            count: isRepost ? repostCount - 1 : repostCount + 1,
-            imageProfile: [...contentData.replies.imageProfile],
-          },
-        }
-      );
+      const res = await axios.patch(`/contentDatas/${contentData.id}`, {
+        isReposted: !isRepost,
+        replies: {
+          count: isRepost ? repostCount - 1 : repostCount + 1,
+          imageProfile: [...contentData.replies.imageProfile],
+        },
+      });
       console.log(res.data);
     } catch (error) {
       setIsRepost(!isRepost);
@@ -104,13 +101,10 @@ export default function CardContent({ contentData }: Props) {
     setIsLike(!isLike);
     setLikeCount(isLike ? likeCount - 1 : likeCount + 1);
     try {
-      const res = await axios.patch(
-        `http://localhost:5000/contentDatas/${contentData.id}`,
-        {
-          isLiked: !isLike,
-          likeCount: isLike ? likeCount - 1 : likeCount + 1,
-        }
-      );
+      const res = await axios.patch(`/contentDatas/${contentData.id}`, {
+        isLiked: !isLike,
+        likeCount: isLike ? likeCount - 1 : likeCount + 1,
+      });
       console.log(res.data);
     } catch (error) {
       setIsLike(!isLike);
@@ -122,12 +116,9 @@ export default function CardContent({ contentData }: Props) {
   const handleFollowed = async () => {
     try {
       setIsFollowing(!isFollowing);
-      const res = await axios.patch(
-        `http://localhost:5000/contentDatas/${contentData.id}`,
-        {
-          isFollowing: !contentData.isFollowing,
-        }
-      );
+      const res = await axios.patch(`/contentDatas/${contentData.id}`, {
+        isFollowing: !contentData.isFollowing,
+      });
       console.log(res.data);
     } catch (error) {
       setIsFollowing(!isFollowing);
