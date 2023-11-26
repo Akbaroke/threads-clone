@@ -23,7 +23,7 @@ function ImageContent({
       <LazyLoad>
         <Image
           src={image}
-          alt=""
+          alt="content"
           className={cn(
             'overflow-hidden rounded-lg shadow-md bg-gray-200/50 [&>img]:object-center [&>img]:object-fill [&>img]:w-full [&>img]:h-full',
             'w-[150px] h-[210px] md:w-[200px] md:h-[280px] lg:w-[300px] lg:h-[420px] border',

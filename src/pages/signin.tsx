@@ -10,6 +10,7 @@ import { RootState } from '@/store';
 import { useRouter } from 'next/router';
 import { encryptData } from '@/utils/cipher';
 import { resendEmailVerification } from '@/services/resendEmailVerification';
+import { HeadMetaData } from '@/components/HeadMetaData';
 
 type FormType = {
   email: string;
@@ -75,6 +76,7 @@ export default function Signin() {
           </Link>
         </>
       }>
+      <HeadMetaData title="Signin" />
       <form
         className="flex flex-col gap-2"
         onSubmit={form.onSubmit(handleSubmit)}>

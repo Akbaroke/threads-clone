@@ -12,6 +12,8 @@ import { isEmail, matchesField, useForm } from '@mantine/form';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import axios from '@/axios';
+import { HeadMetaData } from '@/components/HeadMetaData';
+import { errorMessage } from '@/utils/error';
 
 type FormType = {
   username: string;
@@ -64,7 +66,7 @@ export default function Signup() {
         },
       });
     } catch (error) {
-      toastError('Signup failed', 'signup');
+      toastError(`Signup failed, ${errorMessage(error)}`, 'signup');
       console.log(error);
     }
   };
@@ -81,6 +83,7 @@ export default function Signup() {
           </Link>
         </>
       }>
+      <HeadMetaData title="Signup" />
       <form
         className="flex flex-col gap-2"
         onSubmit={form.onSubmit(handleSubmit)}>

@@ -10,8 +10,7 @@ export type NavLinkProps = {
 
 export default function NavLink({ to, title, icon }: NavLinkProps) {
   const { pathname } = useRouter();
-  console.log(pathname);
-
+  
   return (
     <Link
       href={to}

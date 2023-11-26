@@ -20,7 +20,7 @@ import useLinkPreview from '@/hooks/useLinkPreview';
 import LinkPreview from '../molecules/LinkPreview';
 
 export interface ContentDatas {
-  id: number;
+  id: string;
   username: string;
   imageProfile: string;
   isVerified: boolean;
@@ -28,7 +28,6 @@ export interface ContentDatas {
   content: {
     text: string;
     images?: string[];
-    video?: string;
     hastags?: string[];
   };
   isLiked: boolean;
@@ -133,7 +132,9 @@ export default function CardContent({ contentData }: Props) {
           <ModalImageProfile imgSrc={contentData.imageProfile}>
             <Image
               src={contentData.imageProfile}
-              alt={contentData.username}
+              alt={contentData.username + ' (image profile)'}
+              width={50}
+              height={50}
               className="rounded-full w-[50px] h-[50px] object-cover bg-gray-200"
             />
           </ModalImageProfile>
@@ -175,15 +176,18 @@ export default function CardContent({ contentData }: Props) {
             {ulr.replace('https://', '').replace('http://', '')}
           </Link>
         )}
-        <div className="overflow-x-scroll no-scrollbar">
-          <Container size="xs" mx={0} px={0}>
-            <div className="flex gap-4 w-max">
-              {contentData.content?.images?.map((image, index) => (
-                <ImageContent key={index} image={image} />
-              ))}
+        {contentData.content.images &&
+          contentData.content.images?.length > 0 && (
+            <div className="overflow-x-scroll no-scrollbar">
+              <Container size="xs" mx={0} px={0}>
+                <div className="flex gap-4 w-max">
+                  {contentData.content?.images?.map((image, index) => (
+                    <ImageContent key={index} image={image} />
+                  ))}
+                </div>
+              </Container>
             </div>
-          </Container>
-        </div>
+          )}
         {data && <LinkPreview data={data} />}
 
         <div className="flex items-center gap-5">
