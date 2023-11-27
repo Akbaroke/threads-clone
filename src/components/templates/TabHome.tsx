@@ -1,15 +1,22 @@
 import { Tabs, Transition } from '@mantine/core';
-import { useState } from 'react';
+import { LegacyRef, useState } from 'react';
 import LOGO from '@/assets/threads-logo.png';
 import Image from 'next/image';
 import Link from 'next/link';
 
 type Props = {
   PageForYou: React.ReactNode;
+  RefForYou: LegacyRef<HTMLDivElement>;
   PageFollowing: React.ReactNode;
+  RefFollowing: LegacyRef<HTMLDivElement>;
 };
 
-export default function TabHome({ PageForYou, PageFollowing }: Props) {
+export default function TabHome({
+  PageForYou,
+  PageFollowing,
+  RefForYou,
+  RefFollowing,
+}: Props) {
   const [activeTab, setActiveTab] = useState<string | null>('fy');
 
   return (
@@ -41,7 +48,11 @@ export default function TabHome({ PageForYou, PageFollowing }: Props) {
             transition="slide-right"
             duration={400}
             timingFunction="ease">
-            {(styles) => <div style={styles}>{PageForYou}</div>}
+            {(styles) => (
+              <div style={styles} ref={RefForYou}>
+                {PageForYou}
+              </div>
+            )}
           </Transition>
         </Tabs.Panel>
 
@@ -51,7 +62,11 @@ export default function TabHome({ PageForYou, PageFollowing }: Props) {
             transition="slide-left"
             duration={400}
             timingFunction="ease">
-            {(styles) => <div style={styles}>{PageFollowing}</div>}
+            {(styles) => (
+              <div style={styles} ref={RefFollowing}>
+                {PageFollowing}
+              </div>
+            )}
           </Transition>
         </Tabs.Panel>
       </Tabs>

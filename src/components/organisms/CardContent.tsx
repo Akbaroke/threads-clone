@@ -70,7 +70,7 @@ export default function CardContent({ contentData }: Props) {
   useEffect(() => {
     function extractFirstURL(text: string): string {
       const urlRegex = /(https?:\/\/[^\s]+)/;
-      const match = text.match(urlRegex);
+      const match = text?.match(urlRegex);
       return match ? match[0] : '';
     }
     const firstURL = extractFirstURL(contentData.content.text);
@@ -159,7 +159,7 @@ export default function CardContent({ contentData }: Props) {
       </div>
       <div className="relative flex flex-col gap-5 ml-16 -top-6 z-20">
         <p className="whitespace-pre-line">
-          {contentData.content.text.replace(ulr, '')}
+          {contentData.content.text?.replace(ulr, '')}
         </p>
         <div className="flex gap-2">
           {contentData.content.hastags?.flatMap((value, index) => (
@@ -177,11 +177,11 @@ export default function CardContent({ contentData }: Props) {
           </Link>
         )}
         {contentData.content.images &&
-          contentData.content.images?.length > 0 && (
+          contentData.content?.images?.length > 0 && (
             <div className="overflow-x-scroll no-scrollbar">
               <Container size="xs" mx={0} px={0}>
                 <div className="flex gap-4 w-max">
-                  {contentData.content?.images?.map((image, index) => (
+                  {contentData.content.images.map((image, index) => (
                     <ImageContent key={index} image={image} />
                   ))}
                 </div>
