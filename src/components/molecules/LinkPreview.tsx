@@ -21,7 +21,9 @@ export default function LinkPreview({ data }: { data: LinkPreviewInterface }) {
       <div className="h-[150px]">
         <Image
           src={data.image}
-          alt=""
+          width={100}
+          height={100}
+          alt="foto"
           className="object-center h-full w-full object-cover"
         />
       </div>

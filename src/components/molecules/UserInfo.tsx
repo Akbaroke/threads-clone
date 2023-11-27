@@ -16,7 +16,9 @@ export default function UserInfo({ users }: Props) {
       <div className="flex gap-2 items-center">
         <Image
           src={user?.image || ''}
-          alt=""
+          alt="foto"
+          width={100}
+          height={100}
           className="w-12 rounded-full bg-white"
         />
         <div className="hidden lg:block">

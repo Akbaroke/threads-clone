@@ -12,7 +12,13 @@ export default function CardAuth({ children, tittle, oAuth, footer }: Props) {
   return (
     <div className="w-full p-10 m-auto sm:shadow-xl rounded-xl sm:max-w-md my-14">
       <div className="flex flex-col items-center gap-2">
-        <Image src={LOGO} alt="logo" className="w-[35px]" />
+        <Image
+          src={LOGO}
+          alt="logo"
+          className="w-[35px]"
+          width={100}
+          height={100}
+        />
         <h1 className="font-bold text-[22px]">{tittle}</h1>
       </div>
       {oAuth && (

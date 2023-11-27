@@ -56,7 +56,13 @@ export default function SideNav() {
         <Link
           href="/"
           className="p-4 hover:bg-gray-100 w-max rounded-full cursor-pointer m-auto">
-          <Image src={LOGO} alt="logo" className="w-[30px]" />
+          <Image
+            src={LOGO}
+            alt="logo"
+            className="w-[30px]"
+            width={100}
+            height={100}
+          />
         </Link>
         <div className="flex flex-col gap-2 items-center lg:items-start">
           {listNavigate.map(({ to, title, icon }, index) => (

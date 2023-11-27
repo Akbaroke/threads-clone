@@ -32,7 +32,9 @@ export default function ModalImageProfile({ imgSrc, children }: Props) {
             )}
             <Image
               src={imgSrc}
-              alt=""
+              alt="foto"
+              width={100}
+              height={100}
               className="rounded-full w-96 shadow-md"
               onLoad={() => setIsLoaded(true)}
             />

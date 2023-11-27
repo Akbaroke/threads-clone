@@ -24,7 +24,13 @@ export default function TabHome({
       <Link
         href="/"
         className="p-2 hover:bg-gray-100 w-max rounded-full cursor-pointer m-auto sm:hidden">
-        <Image src={LOGO} alt="logo" className="w-[25px]" />
+        <Image
+          src={LOGO}
+          alt="logo"
+          className="w-[25px]"
+          width={100}
+          height={100}
+        />
       </Link>
       <Tabs defaultValue="fy" color="dark" onTabChange={setActiveTab}>
         <Tabs.List grow className="sticky top-0 bg-white z-30">
