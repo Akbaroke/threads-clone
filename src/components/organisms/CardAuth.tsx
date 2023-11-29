@@ -1,4 +1,4 @@
-import LOGO from '@/assets/threads-logo.png';
+import { THREADS_LOGO } from '@/assets';
 import Image from 'next/image';
 
 type Props = {
@@ -12,7 +12,7 @@ export default function CardAuth({ children, tittle, oAuth, footer }: Props) {
   return (
     <div className="w-full p-10 m-auto sm:shadow-xl rounded-xl sm:max-w-md my-14">
       <div className="flex flex-col items-center gap-2">
-        <Image src={LOGO} alt="logo" className="w-[35px]" />
+        <Image src={THREADS_LOGO} alt="logo" className="w-[35px]" />
         <h1 className="font-bold text-[22px]">{tittle}</h1>
       </div>
       {oAuth && (
