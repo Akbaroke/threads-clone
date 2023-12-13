@@ -9,7 +9,11 @@ const Home = () => {
   const { data, error, size, setSize } = useSWRContent();
   const handleOnScroll = (): void => {
     console.log('Next Page');
+    setSize(size + 1);
   };
+
+  console.log('last data :', data ? data?.flat().length : null);
+  console.log({ data: data?.flat() });
 
   return (
     <Layout>
@@ -17,9 +21,10 @@ const Home = () => {
       <TabHome
         PageForYou={
           <InfiniteScroll
-            dataLength={data?.flat()?.length || 0}
+            dataLength={5}
             next={handleOnScroll}
             hasMore={true}
+            inverse={false}
             loader={<h4>Loading...</h4>}>
             {data?.flat().map((content) => (
               <CardContent contentData={content} key={content.id} />
