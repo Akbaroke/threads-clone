@@ -1,3 +1,4 @@
+import isImageEmpty from '@/utils/isImageEmpty';
 import { Loader, Modal, useMantineTheme } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import Image from 'next/image';
@@ -31,11 +32,11 @@ export default function ModalImageProfile({ imgSrc, children }: Props) {
               <Loader color="dark" variant="bars" className="m-auto" />
             )}
             <Image
-              src={imgSrc}
+              src={isImageEmpty(imgSrc)}
               alt="foto"
+              className="rounded-full w-96 shadow-md"
               width={100}
               height={100}
-              className="rounded-full w-96 shadow-md"
               onLoad={() => setIsLoaded(true)}
             />
           </Modal.Body>

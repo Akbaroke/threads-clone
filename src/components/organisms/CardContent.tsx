@@ -18,6 +18,8 @@ import Link from 'next/link';
 import ImageContent from '../atoms/ImageContent';
 import useLinkPreview from '@/hooks/useLinkPreview';
 import LinkPreview from '../molecules/LinkPreview';
+import { DEFAULT_PROFILE_PICTURE } from '@/assets';
+import isImageEmpty from '@/utils/isImageEmpty';
 
 export interface ContentDatas {
   id: string;
@@ -131,8 +133,8 @@ export default function CardContent({ contentData }: Props) {
         <div className="relative w-max">
           <ModalImageProfile imgSrc={contentData.imageProfile}>
             <Image
-              src={contentData.imageProfile}
-              alt={contentData.username + ' (image profile)'}
+              src={isImageEmpty(contentData.imageProfile)}
+              alt={contentData.username}
               width={50}
               height={50}
               className="rounded-full w-[50px] h-[50px] object-cover bg-gray-200"

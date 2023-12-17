@@ -1,20 +1,24 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MultiSelect } from '@mantine/core';
 
-type DataValue = {
+export type DataTags = {
+  name: string;
   value: string;
   label: string;
 };
 
 type Props = {
-  datas: DataValue[];
+  datas: DataTags[];
   placeholder: string;
-  icon?: React.ReactNode;
-  onChange?: (e: string[]) => void;
+  setHastag: (e: DataTags[]) => void;
 };
 
-function InputTags({ datas, placeholder, icon, onChange }: Props) {
-  const [data, setData] = useState<DataValue[]>(datas);
+function InputTags({ datas, placeholder, setHastag }: Props) {
+  const [data, setData] = useState<DataTags[]>(datas);
+
+  useEffect(() => {
+    setHastag(data);
+  }, [data]);
 
   return (
     <MultiSelect
@@ -23,15 +27,13 @@ function InputTags({ datas, placeholder, icon, onChange }: Props) {
       searchable
       creatable
       size="md"
-      icon={icon}
       placeholder={placeholder}
-      getCreateLabel={(query) => `New Tags ${query}`}
+      getCreateLabel={(query) => `#${query}`}
       onCreate={(query) => {
-        const item = { value: query, label: query };
+        const item = { value: query, label: `#${query}`, name: query };
         setData((current) => [...current, item]);
         return item;
       }}
-      onChange={onChange}
     />
   );
 }

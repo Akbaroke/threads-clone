@@ -4,10 +4,10 @@ import { FiSearch } from 'react-icons/fi';
 import { TbEdit } from 'react-icons/tb';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { BiUser } from 'react-icons/bi';
-import LOGO from '@/assets/threads-logo.png';
 import UserInfo from '../molecules/UserInfo';
 import Image from 'next/image';
 import Link from 'next/link';
+import { THREADS_LOGO } from '@/assets';
 
 export type usersType = {
   name: string;
@@ -57,7 +57,7 @@ export default function SideNav() {
           href="/"
           className="p-4 hover:bg-gray-100 w-max rounded-full cursor-pointer m-auto">
           <Image
-            src={LOGO}
+            src={THREADS_LOGO}
             alt="logo"
             className="w-[30px]"
             width={100}

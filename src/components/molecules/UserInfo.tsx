@@ -3,6 +3,7 @@ import { usersType } from '../organisms/SideNav';
 import { BiDotsHorizontalRounded } from 'react-icons/bi';
 import Image from 'next/image';
 import { RootState } from '@/store';
+import isImageEmpty from '@/utils/isImageEmpty';
 
 type Props = {
   users: usersType;
@@ -15,7 +16,7 @@ export default function UserInfo({ users }: Props) {
     <div className="flex gap-10 justify-between items-center p-3 hover:bg-gray-100 rounded-xl w-full">
       <div className="flex gap-2 items-center">
         <Image
-          src={user?.image || ''}
+          src={isImageEmpty(user?.image)}
           alt="foto"
           width={100}
           height={100}
